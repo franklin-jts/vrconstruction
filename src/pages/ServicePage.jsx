@@ -12,13 +12,31 @@ import Navbar from '../components/Navbar.jsx'
 import Footer from '../components/Footer.jsx'
 import MobileBottomNav from '../components/MobileBottomNav.jsx'
 
+/* Highlights the brand name inside text content */
+function HighlightBrand({ text }) {
+  const parts = text.split(/(VR Constructions)/g)
+  return (
+    <>
+      {parts.map((part, i) =>
+        part === 'VR Constructions' ? (
+          <strong key={i} className="font-bold text-brand">
+            VR Constructions
+          </strong>
+        ) : (
+          <span key={i}>{part}</span>
+        ),
+      )}
+    </>
+  )
+}
+
 /* One card in the zig-zag timeline */
 function WorkCard({ work }) {
   const Icon = work.icon
   return (
-    <div className="group relative rounded-3xl border border-brand/25 bg-[#0B0B0C] p-6 shadow-[0_0_60px_rgba(22,163,74,0.09)] transition duration-300 hover:border-brand/60 hover:shadow-[0_0_80px_rgba(22,163,74,0.18)] md:p-7">
+    <div className="group relative rounded-3xl border border-gray-100 bg-white p-6 shadow-[0_18px_55px_rgba(15,23,42,0.07)] transition duration-300 hover:-translate-y-1 hover:border-brand/40 hover:shadow-[0_24px_70px_rgba(22,163,74,0.12)] md:p-7">
       {/* corner glow */}
-      <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-brand/10 blur-3xl transition group-hover:bg-brand/20" />
+      <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-brand/5 blur-3xl transition group-hover:bg-brand/10" />
 
       <div className="flex items-start justify-between gap-4">
         <h3 className="text-lg font-bold text-brand md:text-xl">{work.title}</h3>
@@ -26,18 +44,18 @@ function WorkCard({ work }) {
           <Icon className="h-5 w-5" />
         </span>
       </div>
-      <div className="mt-2 border-t border-dashed border-brand/40" />
+      <div className="mt-2 border-t border-dashed border-brand/25" />
 
-      <p className="mt-4 text-sm leading-relaxed text-white/60">{work.desc}</p>
+      <p className="mt-4 text-sm leading-relaxed text-gray-600">{work.desc}</p>
 
       <div className="mt-5 grid gap-3 sm:grid-cols-2">
         {work.items.map((item) => (
           <div
             key={item}
-            className="flex items-start gap-2.5 rounded-xl border border-white/5 bg-white/[0.04] px-3.5 py-3 transition group-hover:border-brand/20"
+            className="flex items-start gap-2.5 rounded-xl border border-gray-100 bg-gray-50 px-3.5 py-3 transition group-hover:border-brand/25 group-hover:bg-brand-light/40"
           >
             <Check className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-brand" />
-            <span className="text-xs font-medium leading-snug text-white/80 md:text-[13px]">
+            <span className="text-xs font-medium leading-snug text-gray-700 md:text-[13px]">
               {item}
             </span>
           </div>
@@ -84,6 +102,7 @@ export default function ServicePage() {
     )
   }
 
+  const ServiceIcon = service.icon
   const others = services.filter((s) => s.slug !== slug)
 
   return (
@@ -144,22 +163,26 @@ export default function ServicePage() {
         </section>
 
         {/* ---- Works — dark zig-zag timeline ---- */}
-        <section className="relative overflow-hidden bg-[#050505] py-16 text-white md:py-24">
+        <section className="relative overflow-hidden bg-white py-16 text-ink md:py-24">
           {/* ambient glows */}
-          <div className="pointer-events-none absolute left-[-10%] top-[10%] h-72 w-72 rounded-full bg-brand/10 blur-[120px]" />
-          <div className="pointer-events-none absolute bottom-[15%] right-[-8%] h-80 w-80 rounded-full bg-brand/10 blur-[130px]" />
+          <div className="pointer-events-none absolute left-[-10%] top-[10%] h-72 w-72 rounded-full bg-brand/5 blur-[120px]" />
+          <div className="pointer-events-none absolute bottom-[15%] right-[-8%] h-80 w-80 rounded-full bg-brand/5 blur-[130px]" />
 
           <div className="relative mx-auto max-w-5xl px-4">
             {/* header */}
-            <div className="mx-auto max-w-2xl rounded-3xl border border-white/10 bg-white/[0.03] px-6 py-8 text-center backdrop-blur-sm">
-              <span className="inline-flex items-center rounded-full border border-brand/40 bg-brand/10 px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.3em] text-brand">
+            <div className="mx-auto max-w-2xl rounded-3xl border border-gray-100 bg-white px-6 py-8 text-center shadow-[0_18px_55px_rgba(15,23,42,0.07)]">
+              <span className="inline-flex items-center rounded-full border border-brand/30 bg-brand/10 px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.3em] text-brand">
                 What We Do
               </span>
-              <h2 className="mt-4 text-3xl font-extrabold uppercase leading-tight tracking-tight md:text-4xl">
+              <p className="mt-4 flex items-center justify-center gap-2 text-sm font-extrabold uppercase tracking-[0.3em] text-brand">
+                <ServiceIcon className="h-4 w-4" />
+                VR Constructions
+              </p>
+              <h2 className="mt-2 text-3xl font-extrabold uppercase leading-tight tracking-tight text-ink md:text-4xl">
                 {service.name} <span className="text-brand">Services</span>
               </h2>
-              <p className="mt-3 text-sm leading-relaxed text-white/60 md:text-base">
-                {service.intro}
+              <p className="mt-3 text-sm leading-relaxed text-gray-600 md:text-base">
+                <HighlightBrand text={service.intro} />
               </p>
             </div>
 
@@ -168,7 +191,7 @@ export default function ServicePage() {
               {/* central connector line */}
               <span
                 aria-hidden="true"
-                className="absolute inset-y-0 left-5 w-px -translate-x-1/2 bg-gradient-to-b from-brand/60 via-white/10 to-brand/60 md:left-1/2"
+                className="absolute inset-y-0 left-5 w-px -translate-x-1/2 bg-gradient-to-b from-brand/50 via-brand/15 to-brand/50 md:left-1/2"
               />
 
               {service.works.map((work, i) => {
@@ -181,7 +204,7 @@ export default function ServicePage() {
                   >
                     {/* node on the line */}
                     <div className="absolute left-5 top-9 z-10 flex -translate-x-1/2 flex-col items-center md:left-1/2">
-                      <span className="flex h-12 w-12 items-center justify-center rounded-full border border-brand/50 bg-[#0B0B0C] text-brand shadow-[0_0_25px_rgba(22,163,74,0.35)]">
+                      <span className="flex h-12 w-12 items-center justify-center rounded-full border border-brand/30 bg-white text-brand shadow-lg shadow-brand/15 ring-1 ring-brand/10">
                         <NodeIcon className="h-5 w-5" />
                       </span>
                       <span className="mt-3 hidden whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.3em] text-brand md:block">
@@ -223,7 +246,7 @@ export default function ServicePage() {
         </section>
 
         {/* ---- Trust band ---- */}
-        <section className="border-y border-gray-100 bg-white py-8">
+        <section className="border-y border-brand/10 bg-brand-light/40 py-8">
           <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-center gap-x-10 gap-y-4 px-4 text-center">
             {[
               'ISO 9001:2015 Certified Processes',
