@@ -255,7 +255,7 @@ export default function ServicePage() {
                     key={work.title}
                     className="grid md:grid-cols-2 gap-6 md:gap-8 items-start"
                   >
-                    {/* Image - No Background */}
+                    {/* Image - No Background - Smaller Size */}
                     {work.img && (
                       <div
                         className={`opacity-0 transition-all duration-700 ${!isLeft ? 'md:order-2' : 'md:order-1'}`}
@@ -263,44 +263,46 @@ export default function ServicePage() {
                         data-card-index={i}
                         data-type="image"
                       >
-                        <img 
-                          src={work.img} 
-                          alt={work.title} 
-                          className="w-full h-auto object-contain" 
-                        />
+                        <div className="max-w-xs mx-auto">
+                          <img 
+                            src={work.img} 
+                            alt={work.title} 
+                            className="w-full h-auto object-contain" 
+                          />
+                        </div>
                       </div>
                     )}
 
-                    {/* Content - Always Show */}
+                    {/* Content - Smaller - Always Show */}
                     <div 
-                      className={`opacity-0 transition-all duration-700 ${!isLeft ? 'md:order-1' : 'md:order-2'} py-4`}
+                      className={`opacity-0 transition-all duration-700 ${!isLeft ? 'md:order-1' : 'md:order-2'} py-2`}
                       data-scroll-animate
                       data-card-index={i}
                       data-type="content"
                     >
-                      <div className="space-y-4">
-                        <span className="inline-block rounded-full border border-brand/30 bg-brand/10 px-3 py-1 text-xs font-bold uppercase text-brand">
+                      <div className="space-y-3">
+                        <span className="inline-block rounded-full border border-brand/30 bg-brand/10 px-2 py-0.5 text-xs font-bold uppercase text-brand">
                           {work.tag}
                         </span>
-                        <h3 className="text-2xl font-bold text-ink md:text-3xl">{work.title}</h3>
-                        <p className="text-base leading-relaxed text-gray-600">{work.desc}</p>
+                        <h3 className="text-lg font-bold text-ink md:text-xl">{work.title}</h3>
+                        <p className="text-sm leading-relaxed text-gray-600">{work.desc}</p>
                         
-                        <div className="pt-2 grid gap-2 grid-cols-2">
+                        <div className="pt-2 grid gap-1.5 grid-cols-2">
                           {work.items.map((item) => (
-                            <div key={item} className="flex items-start gap-2">
-                              <Check className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-brand" />
-                              <span className="text-xs font-medium text-gray-700">{item}</span>
+                            <div key={item} className="flex items-start gap-1.5">
+                              <Check className="mt-0.5 h-3 w-3 flex-shrink-0 text-brand" />
+                              <span className="text-xs text-gray-700">{item}</span>
                             </div>
                           ))}
                         </div>
 
-                        <div className="pt-3">
+                        <div className="pt-2">
                           <Link
                             to="/#contact"
-                            className="inline-flex items-center gap-1.5 rounded-full border border-brand/40 bg-brand/10 px-4 py-2 text-sm font-semibold text-brand transition hover:bg-brand hover:text-white"
+                            className="inline-flex items-center gap-1.5 rounded-full border border-brand/40 bg-brand/10 px-3 py-1.5 text-xs font-semibold text-brand transition hover:bg-brand hover:text-white"
                           >
                             Request Free Quote
-                            <ArrowRight className="h-4 w-4" />
+                            <ArrowRight className="h-3 w-3" />
                           </Link>
                         </div>
                       </div>
