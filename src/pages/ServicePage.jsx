@@ -30,12 +30,67 @@ function HighlightBrand({ text }) {
   )
 }
 
+/* Scroll animation trigger hook - Opposite transitions */
+function useScrollAnimation() {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const cardIndex = entry.target.getAttribute('data-card-index')
+            const isImage = entry.target.getAttribute('data-type') === 'image'
+            
+            // Opposite animations for image vs content
+            if (cardIndex === '0') {
+              // Card 1
+              if (isImage) {
+                entry.target.classList.add('animate-slide-in-left') // Image slides left
+              } else {
+                entry.target.classList.add('animate-slide-in-right') // Content slides right
+              }
+            } else if (cardIndex === '1') {
+              // Card 2 - opposite of card 1
+              if (isImage) {
+                entry.target.classList.add('animate-slide-in-right') // Image slides right
+              } else {
+                entry.target.classList.add('animate-slide-in-left') // Content slides left
+              }
+            } else if (cardIndex === '2') {
+              // Card 3 - same as card 1
+              if (isImage) {
+                entry.target.classList.add('animate-slide-in-left')
+              } else {
+                entry.target.classList.add('animate-slide-in-right')
+              }
+            }
+          }
+        })
+      },
+      {
+        threshold: 0.15,
+        rootMargin: '0px 0px -100px 0px',
+      }
+    )
+
+    const elements = document.querySelectorAll('[data-scroll-animate]')
+    elements.forEach((el) => observer.observe(el))
+
+    return () => observer.disconnect()
+  }, [])
+}
+
 /* One card in the zig-zag timeline */
 function WorkCard({ work, isLeft }) {
   const Icon = work.icon
   
   return (
-    <div className="group relative rounded-3xl border border-gray-100 bg-white p-6 shadow-[0_18px_55px_rgba(15,23,42,0.07)] transition duration-300 hover:-translate-y-1 hover:border-brand/40 hover:shadow-[0_24px_70px_rgba(22,163,74,0.12)] md:p-7">
+    <div 
+      className="group relative rounded-3xl border border-gray-100 bg-white p-6 shadow-[0_18px_55px_rgba(15,23,42,0.07)] transition duration-300 hover:-translate-y-1 hover:border-brand/40 hover:shadow-[0_24px_70px_rgba(22,163,74,0.12)] md:p-7 opacity-0 transition-all duration-700"
+      data-scroll-animate
+      style={{ 
+        transform: 'translateX(0)',
+      }}
+    >
       <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-brand/5 blur-3xl transition group-hover:bg-brand/10" />
       
       <div className="flex items-start justify-between gap-4">
@@ -46,7 +101,9 @@ function WorkCard({ work, isLeft }) {
       </div>
       <div className="mt-2 border-t border-dashed border-brand/25" />
       
-      <p className="mt-4 text-sm leading-relaxed text-gray-600">{work.desc}</p>
+      <p className="mt-4 text-sm leading-relaxed text-gray-600">
+        {work.desc}
+      </p>
       
       <div className="mt-5 grid gap-3 sm:grid-cols-2">
         {work.items.map((item) => (
@@ -78,6 +135,9 @@ function WorkCard({ work, isLeft }) {
 export default function ServicePage() {
   const { slug } = useParams()
   const service = getServiceBySlug(slug)
+  
+  // Trigger scroll animations
+  useScrollAnimation()
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -163,7 +223,7 @@ export default function ServicePage() {
         </section>
 
         {/* ---- Works — dark zig-zag timeline ---- */}
-        <section className="relative overflow-hidden bg-white py-16 text-ink md:py-24">
+        <section className="relative overflow-hidden bg-white py-14 text-ink md:py-20">
           {/* ambient glows */}
           <div className="pointer-events-none absolute left-[-10%] top-[10%] h-72 w-72 rounded-full bg-brand/5 blur-[120px]" />
           <div className="pointer-events-none absolute bottom-[15%] right-[-8%] h-80 w-80 rounded-full bg-brand/5 blur-[130px]" />
@@ -186,60 +246,64 @@ export default function ServicePage() {
               </p>
             </div>
 
-            {/* timeline */}
-            <div className="relative mt-14 md:mt-20">
-              {/* central connector line */}
-              <span
-                aria-hidden="true"
-                className="absolute inset-y-0 left-5 w-px -translate-x-1/2 bg-gradient-to-b from-brand/50 via-brand/15 to-brand/50 md:left-1/2"
-              />
-
+            {/* Image Gallery - Simple Zig Zag Layout */}
+            <div className="relative mt-12 space-y-12 md:mt-16 md:space-y-16">
               {service.works.map((work, i) => {
-                const NodeIcon = work.icon
                 const isLeft = i % 2 === 0
                 return (
                   <div
                     key={work.title}
-                    className="relative pb-12 last:pb-0 md:pb-16"
+                    className="grid md:grid-cols-2 gap-6 md:gap-8 items-start"
                   >
-                    {/* node on the line */}
-                    <div className="absolute left-5 top-9 z-10 flex -translate-x-1/2 flex-col items-center md:left-1/2">
-                      <span className="flex h-12 w-12 items-center justify-center rounded-full border border-brand/30 bg-white text-brand shadow-lg shadow-brand/15 ring-1 ring-brand/10">
-                        <NodeIcon className="h-5 w-5" />
-                      </span>
-                      <span className="mt-3 hidden whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.3em] text-brand md:block">
-                        {work.tag}
-                      </span>
-                    </div>
-
-                    {/* card wrapper with image */}
-                    <div className="md:grid md:grid-cols-2 md:gap-24">
+                    {/* Image - No Background */}
+                    {work.img && (
                       <div
-                        className={`${
-                          isLeft
-                            ? 'ml-14 md:ml-0 md:col-start-1'
-                            : 'ml-14 md:ml-0 md:col-start-2'
-                        }`}
+                        className={`opacity-0 transition-all duration-700 ${!isLeft ? 'md:order-2' : 'md:order-1'}`}
+                        data-scroll-animate
+                        data-card-index={i}
+                        data-type="image"
                       >
-                        <WorkCard work={work} isLeft={isLeft} />
+                        <img 
+                          src={work.img} 
+                          alt={work.title} 
+                          className="w-full h-auto object-contain" 
+                        />
                       </div>
-                      
-                      {/* Image positioned in the right empty space */}
-                      {work.img && (
-                        <div
-                          className={`hidden md:flex md:items-center md:justify-center ${
-                            isLeft ? 'md:col-start-2 md:row-start-1' : 'md:col-start-1 md:row-start-1'
-                          }`}
-                        >
-                          <div className="group relative rounded-3xl overflow-hidden shadow-[0_18px_55px_rgba(15,23,42,0.07)] hover:shadow-[0_24px_70px_rgba(22,163,74,0.12)] transition duration-300 w-full h-80">
-                            <img 
-                              src={work.img} 
-                              alt={work.title} 
-                              className="w-full h-full object-cover group-hover:scale-105 transition duration-300" 
-                            />
-                          </div>
+                    )}
+
+                    {/* Content - Always Show */}
+                    <div 
+                      className={`opacity-0 transition-all duration-700 ${!isLeft ? 'md:order-1' : 'md:order-2'} py-4`}
+                      data-scroll-animate
+                      data-card-index={i}
+                      data-type="content"
+                    >
+                      <div className="space-y-4">
+                        <span className="inline-block rounded-full border border-brand/30 bg-brand/10 px-3 py-1 text-xs font-bold uppercase text-brand">
+                          {work.tag}
+                        </span>
+                        <h3 className="text-2xl font-bold text-ink md:text-3xl">{work.title}</h3>
+                        <p className="text-base leading-relaxed text-gray-600">{work.desc}</p>
+                        
+                        <div className="pt-2 grid gap-2 grid-cols-2">
+                          {work.items.map((item) => (
+                            <div key={item} className="flex items-start gap-2">
+                              <Check className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-brand" />
+                              <span className="text-xs font-medium text-gray-700">{item}</span>
+                            </div>
+                          ))}
                         </div>
-                      )}
+
+                        <div className="pt-3">
+                          <Link
+                            to="/#contact"
+                            className="inline-flex items-center gap-1.5 rounded-full border border-brand/40 bg-brand/10 px-4 py-2 text-sm font-semibold text-brand transition hover:bg-brand hover:text-white"
+                          >
+                            Request Free Quote
+                            <ArrowRight className="h-4 w-4" />
+                          </Link>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 )
