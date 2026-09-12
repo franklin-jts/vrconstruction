@@ -31,13 +31,13 @@ function HighlightBrand({ text }) {
 }
 
 /* One card in the zig-zag timeline */
-function WorkCard({ work }) {
+function WorkCard({ work, isLeft }) {
   const Icon = work.icon
+  
   return (
     <div className="group relative rounded-3xl border border-gray-100 bg-white p-6 shadow-[0_18px_55px_rgba(15,23,42,0.07)] transition duration-300 hover:-translate-y-1 hover:border-brand/40 hover:shadow-[0_24px_70px_rgba(22,163,74,0.12)] md:p-7">
-      {/* corner glow */}
       <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-brand/5 blur-3xl transition group-hover:bg-brand/10" />
-
+      
       <div className="flex items-start justify-between gap-4">
         <h3 className="text-lg font-bold text-brand md:text-xl">{work.title}</h3>
         <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl border border-brand/30 bg-brand/10 text-brand md:hidden">
@@ -45,9 +45,9 @@ function WorkCard({ work }) {
         </span>
       </div>
       <div className="mt-2 border-t border-dashed border-brand/25" />
-
+      
       <p className="mt-4 text-sm leading-relaxed text-gray-600">{work.desc}</p>
-
+      
       <div className="mt-5 grid gap-3 sm:grid-cols-2">
         {work.items.map((item) => (
           <div
@@ -196,7 +196,7 @@ export default function ServicePage() {
 
               {service.works.map((work, i) => {
                 const NodeIcon = work.icon
-                const cardLeft = i % 2 === 0
+                const isLeft = i % 2 === 0
                 return (
                   <div
                     key={work.title}
@@ -212,31 +212,34 @@ export default function ServicePage() {
                       </span>
                     </div>
 
-                    {/* horizontal connector from line to card */}
-                    <span
-                      aria-hidden="true"
-                      className={`absolute top-[3.2rem] hidden h-px w-14 md:block ${
-                        cardLeft
-                          ? 'left-1/2 -translate-x-full bg-gradient-to-l from-brand/60 to-transparent'
-                          : 'left-1/2 bg-gradient-to-r from-brand/60 to-transparent'
-                      }`}
-                    />
-
-                    {/* card — alternates left / right */}
-                    <div
-                      className={`md:grid md:grid-cols-2 md:gap-24 ${
-                        cardLeft ? '' : 'md:[&>*:first-child]:col-start-2'
-                      }`}
-                    >
+                    {/* card wrapper with image */}
+                    <div className="md:grid md:grid-cols-2 md:gap-24">
                       <div
                         className={`${
-                          cardLeft
-                            ? 'ml-14 md:ml-0 md:col-start-1 md:row-start-1'
-                            : 'ml-14 md:ml-0 md:col-start-2 md:row-start-1'
+                          isLeft
+                            ? 'ml-14 md:ml-0 md:col-start-1'
+                            : 'ml-14 md:ml-0 md:col-start-2'
                         }`}
                       >
-                        <WorkCard work={work} />
+                        <WorkCard work={work} isLeft={isLeft} />
                       </div>
+                      
+                      {/* Image positioned in the right empty space */}
+                      {work.img && (
+                        <div
+                          className={`hidden md:flex md:items-center md:justify-center ${
+                            isLeft ? 'md:col-start-2 md:row-start-1' : 'md:col-start-1 md:row-start-1'
+                          }`}
+                        >
+                          <div className="group relative rounded-3xl overflow-hidden shadow-[0_18px_55px_rgba(15,23,42,0.07)] hover:shadow-[0_24px_70px_rgba(22,163,74,0.12)] transition duration-300 w-full h-80">
+                            <img 
+                              src={work.img} 
+                              alt={work.title} 
+                              className="w-full h-full object-cover group-hover:scale-105 transition duration-300" 
+                            />
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 )

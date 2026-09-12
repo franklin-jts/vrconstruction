@@ -48,6 +48,7 @@ export const services = [
         tag: 'We Build',
         title: 'Residential Construction',
         desc: 'Custom homes built on your plot with high standards, quality material and great value for money.',
+        img: '/images/constructions/Trusted Construction Estimating Company _ Accurate Project Bids.jpg',
         items: [
           'Independent houses',
           'Villas & duplex homes',
@@ -60,6 +61,7 @@ export const services = [
         tag: 'We Deliver',
         title: 'Commercial Construction',
         desc: 'Commercial spaces executed on schedule with clear stage-wise billing and dedicated supervision.',
+        img: '/images/constructions/Aurora Retail Construction Company _ Plazas, Strip.jpg',
         items: [
           'Office spaces',
           'Retail showrooms',
@@ -72,6 +74,7 @@ export const services = [
         tag: 'We Erect',
         title: 'Warehouse Construction',
         desc: 'Large-span storage and industrial structures engineered for strength, safety and fast completion.',
+        img: '/images/constructions/Large-span steel structure buildings.jpg',
         items: [
           'Warehouses & godowns',
           'Industrial sheds',
@@ -84,6 +87,7 @@ export const services = [
         tag: 'We Restore',
         title: 'O.S Works (Old Structures)',
         desc: 'Assessment, strengthening and rebuilding of old structures by experienced structural engineers.',
+        img: '/images/constructions/Difference between a Scaffolding and Formwork.jpg',
         items: [
           'Old structure assessment',
           'Structural strengthening',
@@ -120,6 +124,7 @@ export const services = [
         tag: 'We Craft',
         title: 'Kitchen',
         desc: 'Ergonomic modular kitchens with premium hardware, smart storage and stylish finishes.',
+        img: '/images/interior/Modern Luxury Modular Kitchen Design ✨.jpg',
         items: [
           'L-shape, parallel & island layouts',
           'Quartz / granite counter tops',
@@ -132,6 +137,7 @@ export const services = [
         tag: 'We Craft',
         title: 'Wall Unit & TV Cabinet',
         desc: 'Designer wall units that anchor your living room — storage, display and entertainment in one.',
+        img: '/images/interior/Luxury TV Unit Design for Living Room.jpg',
         items: [
           'Floating & floor-standing units',
           'Backlit TV panels',
@@ -144,6 +150,7 @@ export const services = [
         tag: 'We Install',
         title: 'Wardrobes & Loft',
         desc: 'Custom wardrobes maximising every inch — from floor to ceiling, including lofts.',
+        img: '/images/interior/Built in wardrobe.jpg',
         items: [
           'Sliding & hinged shutters',
           'Loft storage on parapet',
@@ -156,6 +163,7 @@ export const services = [
         tag: 'We Craft',
         title: 'Pooja Cabinet',
         desc: 'Compact, elegant pooja units in wood and laminate — designed for your daily rituals.',
+        img: '/images/interior/Luxury Home Mandir Design _ Modern Pooja Room Ideas _ Elegant Temple Interior.jpg',
         items: [
           'Wall-mounted & floor models',
           'Carved / CNC jaali doors',
@@ -168,6 +176,7 @@ export const services = [
         tag: 'We Finish',
         title: 'Wall Paneling',
         desc: 'Premium wall paneling that adds texture, warmth and character to any room.',
+        img: '/images/interior/4644405853469403.jpg',
         items: [
           'Fluted & CNC panels',
           'Wooden laminate paneling',
@@ -180,6 +189,7 @@ export const services = [
         tag: 'We Install',
         title: 'False Ceiling',
         desc: 'Gypsum and POP ceilings with layered lighting plans for every room.',
+        img: '/images/interior/Luxury Living Room POP & Gypsum False Ceiling….jpg',
         items: [
           'Gypsum board ceilings',
           'POP & grid ceilings',
@@ -216,6 +226,7 @@ export const services = [
         tag: 'All Types',
         title: 'Renovation Work',
         desc: 'We handle every type of renovation — from a single room refresh to a complete home makeover.',
+        img: '/images/Rennovations/Planning to renovate your home_ 🏡✨ UHS Remodeling….jpg',
         items: [
           'Kitchen & bathroom remodel',
           'Full-home makeover',
@@ -228,6 +239,7 @@ export const services = [
         tag: 'We Paint',
         title: 'Painting — Interior & Exterior',
         desc: 'Putty-perfect preparation and premium paints for a finish that lasts for years.',
+        img: '/images/Rennovations/Dynamic Swirling Colors.jpg',
         items: [
           'Interior emulsion finishes',
           'Exterior weather-proof paint',
@@ -240,6 +252,7 @@ export const services = [
         tag: 'We Repair',
         title: 'Civil & Structural Repairs',
         desc: 'Cracks, leakages and weak structures repaired and strengthened by our civil team.',
+        img: '/images/Rennovations/Civil And Structure Services.jpg',
         items: [
           'Crack & leakage treatment',
           'Terrace re-waterproofing',
@@ -252,6 +265,7 @@ export const services = [
         tag: 'We Re-lay',
         title: 'Flooring & Re-tiling',
         desc: 'Old floors replaced and re-polished with minimal demolition waste.',
+        img: '/images/Rennovations/luxury house.jpg',
         items: [
           'Vitrified & ceramic re-tiling',
           'Marble / granite re-polishing',
@@ -288,6 +302,7 @@ export const services = [
         tag: 'We Wire',
         title: 'Electrical Works',
         desc: 'Safe, certified electrical work for new homes and renovations.',
+        img: '/images/others/Electrician at Work on Electrical Installation.jpg',
         items: [
           'House wiring & rewiring',
           'DB, MCB & earthing',
@@ -300,6 +315,7 @@ export const services = [
         tag: 'We Plumb',
         title: 'Plumbing Works',
         desc: 'Complete plumbing — from sump to tap — with leak-proof workmanship.',
+        img: '/images/others/Plumber Near Me – Trusted Plumbing Services in Nepal _ Book Online.jpg',
         items: [
           'CPVC / UPVC pipe lines',
           'Bathroom sanitary fittings',
@@ -312,6 +328,7 @@ export const services = [
         tag: 'We Fix',
         title: 'Tiles Laying',
         desc: 'Precision laying and polishing for a mirror-smooth finish.',
+        img: '/images/others/How to Install Marble and Travertine Tiles Like a Pro_ Step-by-Step Guide.jpg',
         items: [
           'Marble laying & polishing',
           'Granite laying & polishing',
@@ -324,6 +341,7 @@ export const services = [
         tag: 'We Craft',
         title: 'Carpentry Works',
         desc: 'Site carpentry for doors, windows and custom woodwork.',
+        img: '/images/others/Paul\'s Carpentry Workshop _ Home Remodeling, Stoneham MA.jpg',
         items: [
           'Doors & windows',
           'Custom furniture',
@@ -336,6 +354,7 @@ export const services = [
         tag: 'We Fabricate',
         title: 'Fabrication — MS / SS / Aluminium',
         desc: 'Metal fabrication for safety, style and structure.',
+        img: '/images/others/24 Mid-century Modern Exterior Home Ideas to Boost___.jpg',
         items: [
           'M.S — grills, gates & stairs',
           'S.S — railings & handrails',
@@ -348,6 +367,7 @@ export const services = [
         tag: 'We Protect',
         title: 'Water Proofing',
         desc: 'Long-lasting waterproofing that keeps leakages out for good.',
+        img: '/images/others/Butynol Roof Coating in Porirua by Capital Painting Services.jpg',
         items: [
           'Terrace & roof waterproofing',
           'Bathrooms & kitchens',
