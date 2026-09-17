@@ -140,21 +140,28 @@ export default function Navbar() {
         .navbar-menu {
           font-size: 12px;
           gap: 20px;
-          display: flex;
+          display: none;
           align-items: center;
           justify-content: center;
           flex: 1;
         }
         
-        @media (max-width: 640px) {
+        @media (min-width: 768px) {
+          .navbar-menu {
+            display: flex;
+            font-size: 13px;
+            gap: 25px;
+          }
+        }
+        
+        @media (max-width: 767px) {
           .navbar-container {
             padding: 6px 12px;
             gap: 20px;
           }
           
           .navbar-menu {
-            font-size: 11px;
-            gap: 15px;
+            display: none !important;
           }
           
           .logo-wrapper {
@@ -162,25 +169,16 @@ export default function Navbar() {
           }
         }
         
-        @media (min-width: 768px) {
-          .navbar-container {
-            padding: 10px 20px;
-          }
-          
-          .navbar-menu {
-            font-size: 13px;
-            gap: 25px;
-          }
-        }
-        
         .navbar-button {
           font-size: 11px;
           padding: 4px 10px;
           border-radius: 4px;
+          display: none;
         }
         
         @media (min-width: 768px) {
           .navbar-button {
+            display: inline-flex;
             font-size: 12px;
             padding: 6px 14px;
           }
