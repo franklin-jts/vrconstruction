@@ -125,7 +125,7 @@ export default function Navbar() {
           align-items: center;
           gap: 30px;
           overflow: visible;
-          justify-content: center;
+          justify-content: space-between;
         }
         
         .logo-wrapper {
@@ -133,8 +133,8 @@ export default function Navbar() {
           align-items: center;
           height: auto;
           margin: 0;
-          position: absolute;
-          left: 16px;
+          position: relative;
+          left: 0;
         }
         
         .navbar-menu {
@@ -156,8 +156,9 @@ export default function Navbar() {
         
         @media (max-width: 767px) {
           .navbar-container {
-            padding: 6px 12px;
-            gap: 20px;
+            padding: 8px 12px;
+            gap: 0;
+            justify-content: space-between;
           }
           
           .navbar-menu {
@@ -165,7 +166,7 @@ export default function Navbar() {
           }
           
           .logo-wrapper {
-            left: 12px;
+            flex: 1;
           }
         }
         
@@ -199,6 +200,21 @@ export default function Navbar() {
         .navbar-link:hover {
           color: #1b5e2e;
         }
+        
+        .mobile-menu-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: none;
+          border: none;
+          cursor: pointer;
+        }
+        
+        @media (min-width: 768px) {
+          .mobile-menu-btn {
+            display: none;
+          }
+        }
       `}</style>
       
       <header className="sticky top-0 z-50 bg-white shadow-sm">
@@ -231,14 +247,14 @@ export default function Navbar() {
       </div>
 
       {/* Logo and Menu - same line */}
-      <div className="navbar-container mx-auto max-w-7xl px-4 relative">
+      <div className="navbar-container mx-auto max-w-7xl px-4">
         <div className="logo-wrapper">
           <Link to="/" className="flex-shrink-0">
             <BrandLogo className="h-20 w-auto" />
           </Link>
         </div>
 
-        <nav className="navbar-menu hidden md:flex lg:flex">
+        <nav className="navbar-menu hidden md:flex">
           <Link
             className="navbar-link text-ink hover:text-brand"
             to="/"
@@ -263,7 +279,7 @@ export default function Navbar() {
           <Dropdown label="Company" items={companyMenu} />
         </nav>
 
-        <div className="hidden md:flex lg:flex items-center gap-2">
+        <div className="hidden md:flex items-center gap-2">
           <Link to="/#contact" className="navbar-button btn-brand">
             Get Free Quote
           </Link>
@@ -271,7 +287,7 @@ export default function Navbar() {
 
         <button
           type="button"
-          className="md:hidden"
+          className="mobile-menu-btn md:hidden ml-auto"
           aria-label="Open menu"
           onClick={() => setMobileOpen(true)}
         >
