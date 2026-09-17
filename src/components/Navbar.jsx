@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import {
   ChevronDown,
@@ -115,9 +115,58 @@ export default function Navbar() {
   ]
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-sm">
+    <>
+      <style>{`
+        .navbar-container {
+          padding: 8px 16px;
+          height: 50px;
+          display: flex;
+          align-items: center;
+          gap: 30px;
+          overflow: visible;
+          justify-content: center;
+        }
+        
+        .logo-wrapper {
+          display: flex;
+          align-items: center;
+          height: 100px;
+          margin: -25px 0;
+          position: absolute;
+          left: 16px;
+        }
+        
+        .navbar-menu {
+          font-size: 13px;
+          gap: 25px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex: 1;
+        }
+        
+        .navbar-button {
+          font-size: 12px;
+          padding: 6px 14px;
+          border-radius: 4px;
+          position: absolute;
+          right: 16px;
+        }
+        
+        .navbar-link {
+          font-size: 13px;
+          font-weight: 500;
+          transition: color 0.3s ease;
+        }
+        
+        .navbar-link:hover {
+          color: #1b5e2e;
+        }
+      `}</style>
+      
+      <header className="sticky top-0 z-50 bg-white shadow-sm">
       {/* Top ticker bar */}
-      <div className="bg-brand text-sm text-white">
+      <div className="bg-[#1b5e2e] text-sm text-white">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2">
           <div className="min-h-[1.25rem] overflow-hidden">
             {topTicker.map((t, i) => (
@@ -144,15 +193,17 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Main bar */}
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
-        <Link to="/" className="flex-shrink-0">
-          <BrandLogo className="h-10 w-auto md:h-12" />
-        </Link>
+      {/* Logo and Menu - same line */}
+      <div className="navbar-container mx-auto max-w-7xl px-4 relative">
+        <div className="logo-wrapper">
+          <Link to="/" className="flex-shrink-0">
+            <BrandLogo className="h-20 w-auto" />
+          </Link>
+        </div>
 
-        <nav className="hidden items-center gap-6 lg:flex">
+        <nav className="navbar-menu hidden lg:flex">
           <Link
-            className="text-sm font-medium text-ink hover:text-brand"
+            className="navbar-link text-ink hover:text-brand"
             to="/"
           >
             Home
@@ -167,7 +218,7 @@ export default function Navbar() {
             }))}
           />
           <Link
-            className="text-sm font-medium text-ink hover:text-brand"
+            className="navbar-link text-ink hover:text-brand"
             to="/#packages"
           >
             Packages
@@ -175,8 +226,8 @@ export default function Navbar() {
           <Dropdown label="Company" items={companyMenu} />
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
-          <Link to="/#contact" className="btn-brand">
+        <div className="hidden items-center gap-2 lg:flex">
+          <Link to="/#contact" className="navbar-button btn-brand">
             Get Free Quote
           </Link>
         </div>
@@ -303,5 +354,6 @@ export default function Navbar() {
         </div>
       </div>
     </header>
+    </>
   )
 }

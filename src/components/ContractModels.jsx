@@ -88,9 +88,11 @@ export default function ContractModels() {
             return (
               <div
                 key={m.name}
-                className={`relative overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-lg transition duration-300 hover:shadow-xl ${
-                  idx === 0 ? 'md:row-start-1' : ''
-                }`}
+                className={`relative overflow-hidden rounded-3xl border backdrop-blur-xl transition duration-500 hover:shadow-2xl hover:scale-105 ${
+                  idx === 0
+                    ? 'border-brand/30 bg-white/40 shadow-lg hover:border-brand/50'
+                    : 'border-amber-300/30 bg-white/40 shadow-lg hover:border-amber-300/50'
+                } ${idx === 0 ? 'md:row-start-1' : ''}`}
               >
                 {/* Background accent */}
                 <div className="absolute inset-0 opacity-40">
@@ -107,31 +109,31 @@ export default function ContractModels() {
                   {/* Icon and Title */}
                   <div className="flex items-start gap-4">
                     <div
-                      className={`flex h-14 w-14 items-center justify-center rounded-2xl ${
+                      className={`flex h-14 w-14 items-center justify-center rounded-2xl backdrop-blur-md transition duration-300 ${
                         idx === 0
-                          ? 'bg-brand/10 text-brand'
-                          : 'bg-amber-100 text-amber-600'
+                          ? 'bg-brand/20 text-brand hover:bg-brand/40'
+                          : 'bg-amber-100/40 text-amber-600 hover:bg-amber-100/60'
                       }`}
                     >
                       <ModelIcon className="h-7 w-7" />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold text-ink">{m.name}</h3>
+                      <h3 className="text-2xl font-bold text-ink transition duration-300">{m.name}</h3>
                       <p className="mt-1 text-sm font-semibold text-gray-600">{m.desc}</p>
                     </div>
                   </div>
 
                   {/* Description */}
-                  <p className="mt-6 text-sm leading-relaxed text-gray-700">
+                  <p className="mt-6 text-sm leading-relaxed text-gray-700 transition duration-300">
                     {m.longDesc}
                   </p>
 
                   {/* Points */}
                   <ul className="mt-6 space-y-3">
                     {m.points.map((pt) => (
-                      <li key={pt} className="flex items-start gap-3 text-sm text-gray-700">
+                      <li key={pt} className="flex items-start gap-3 text-sm text-gray-700 transition duration-300 hover:translate-x-1">
                         <CheckCircle2
-                          className={`mt-0.5 h-5 w-5 flex-shrink-0 ${
+                          className={`mt-0.5 h-5 w-5 flex-shrink-0 transition duration-300 ${
                             idx === 0 ? 'text-brand' : 'text-amber-500'
                           }`}
                         />
@@ -142,10 +144,10 @@ export default function ContractModels() {
 
                   {/* CTA Button */}
                   <button
-                    className={`mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white transition ${m.ctaColor}`}
+                    className={`mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white transition duration-300 hover:scale-110 hover:shadow-lg ${m.ctaColor}`}
                   >
                     {m.cta}
-                    <ArrowRight className="h-4 w-4" />
+                    <ArrowRight className="h-4 w-4 transition duration-300 group-hover:translate-x-1" />
                   </button>
                 </div>
               </div>
@@ -160,15 +162,15 @@ export default function ContractModels() {
             return (
               <div
                 key={b.title}
-                className="rounded-2xl border border-gray-100 bg-gray-50 p-6 text-center transition hover:bg-white hover:shadow-md"
+                className="rounded-2xl border border-white/30 bg-white/30 backdrop-blur-md p-6 text-center transition duration-300 hover:bg-white/50 hover:shadow-lg hover:scale-105"
               >
                 <div className="flex justify-center">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand/10 text-brand">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand/20 text-brand backdrop-blur-sm transition duration-300 hover:bg-brand/40">
                     <BIcon className="h-6 w-6" />
                   </div>
                 </div>
-                <h4 className="mt-4 font-bold text-ink">{b.title}</h4>
-                <p className="mt-2 text-xs text-gray-600">{b.desc}</p>
+                <h4 className="mt-4 font-bold text-ink transition duration-300">{b.title}</h4>
+                <p className="mt-2 text-xs text-gray-600 transition duration-300">{b.desc}</p>
               </div>
             )
           })}

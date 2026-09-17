@@ -4,9 +4,9 @@
 @theme {
   --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
 
-  --color-brand: #16a34a;
-  --color-brand-dark: #15803d;
-  --color-brand-light: #f0fdf4;
+  --color-brand: #1b5e2e;
+  --color-brand-dark: #0f3d1f;
+  --color-brand-light: #e8f5ed;
   --color-ink: #333333;
   --color-night: #00040d;
 }
@@ -27,7 +27,7 @@ body {
   align-items: center;
   justify-content: center;
   border-radius: 0.375rem;
-  background-color: #16a34a;
+  background-color: #1b5e2e;
   padding: 0.625rem 1.25rem;
   font-size: 0.875rem;
   line-height: 1.25rem;
@@ -38,7 +38,7 @@ body {
   transition-duration: 150ms;
 }
 .btn-brand:hover {
-  background-color: #15803d;
+  background-color: #0f3d1f;
 }
 
 /* Hero text shadow used over the hero photo */

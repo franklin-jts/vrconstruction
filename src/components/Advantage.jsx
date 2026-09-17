@@ -26,9 +26,9 @@ const points = [
 
 export default function Advantage() {
   return (
-    <section className="relative overflow-hidden bg-[#00040D] py-16 text-white md:py-24">
-      <div className="absolute -left-32 top-10 h-72 w-72 rounded-full bg-brand/10 blur-3xl" />
-      <div className="absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-brand/10 blur-3xl" />
+    <section className="relative overflow-hidden bg-[#1b5e2e] py-16 text-white md:py-24">
+      <div className="absolute -left-32 top-10 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
+      <div className="absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl px-4">
         <SectionHeading

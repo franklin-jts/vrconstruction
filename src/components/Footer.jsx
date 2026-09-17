@@ -51,13 +51,13 @@ const areas = [
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-[#00040D] text-white">
-      <div className="absolute -right-24 top-0 h-64 w-64 rounded-full bg-brand/10 blur-3xl" />
+    <footer className="relative overflow-hidden bg-[#1b5e2e] text-white">
+      <div className="absolute -right-24 top-0 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl px-4 py-14">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
           <div>
-            <BrandLogo />
+            <BrandLogo size={140} />
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/70">
               VR Constructions Promise: Transparent pricing. Quality execution. A
               dedicated team helps you move from idea to construction with fewer
