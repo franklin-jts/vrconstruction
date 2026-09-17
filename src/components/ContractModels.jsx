@@ -82,17 +82,17 @@ export default function ContractModels() {
           </div>
         </div>
 
-        <div className="mt-16 grid gap-8 lg:grid-cols-2">
+        <div className="mt-16 grid gap-6 md:gap-8 lg:grid-cols-2">
           {models.map((m, idx) => {
             const ModelIcon = m.icon
             return (
               <div
                 key={m.name}
-                className={`relative overflow-hidden rounded-3xl border backdrop-blur-xl transition duration-500 hover:shadow-2xl hover:scale-105 ${
+                className={`relative overflow-hidden rounded-3xl border backdrop-blur-xl transition duration-500 hover:shadow-2xl ${
                   idx === 0
                     ? 'border-brand/30 bg-white/40 shadow-lg hover:border-brand/50'
                     : 'border-amber-300/30 bg-white/40 shadow-lg hover:border-amber-300/50'
-                } ${idx === 0 ? 'md:row-start-1' : ''}`}
+                }`}
               >
                 {/* Background accent */}
                 <div className="absolute inset-0 opacity-40">
@@ -105,35 +105,35 @@ export default function ContractModels() {
                   />
                 </div>
 
-                <div className="relative p-8 md:p-10">
+                <div className="relative p-5 md:p-8 lg:p-10">
                   {/* Icon and Title */}
                   <div className="flex items-start gap-4">
                     <div
-                      className={`flex h-14 w-14 items-center justify-center rounded-2xl backdrop-blur-md transition duration-300 ${
+                      className={`flex h-12 w-12 md:h-14 md:w-14 items-center justify-center rounded-2xl backdrop-blur-md transition duration-300 flex-shrink-0 ${
                         idx === 0
                           ? 'bg-brand/20 text-brand hover:bg-brand/40'
                           : 'bg-amber-100/40 text-amber-600 hover:bg-amber-100/60'
                       }`}
                     >
-                      <ModelIcon className="h-7 w-7" />
+                      <ModelIcon className="h-6 w-6 md:h-7 md:w-7" />
                     </div>
-                    <div>
-                      <h3 className="text-2xl font-bold text-ink transition duration-300">{m.name}</h3>
-                      <p className="mt-1 text-sm font-semibold text-gray-600">{m.desc}</p>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-lg md:text-2xl font-bold text-ink transition duration-300">{m.name}</h3>
+                      <p className="mt-1 text-xs md:text-sm font-semibold text-gray-600">{m.desc}</p>
                     </div>
                   </div>
 
                   {/* Description */}
-                  <p className="mt-6 text-sm leading-relaxed text-gray-700 transition duration-300">
+                  <p className="mt-5 md:mt-6 text-xs md:text-sm leading-relaxed text-gray-700 transition duration-300">
                     {m.longDesc}
                   </p>
 
                   {/* Points */}
-                  <ul className="mt-6 space-y-3">
+                  <ul className="mt-5 md:mt-6 space-y-2 md:space-y-3">
                     {m.points.map((pt) => (
-                      <li key={pt} className="flex items-start gap-3 text-sm text-gray-700 transition duration-300 hover:translate-x-1">
+                      <li key={pt} className="flex items-start gap-3 text-xs md:text-sm text-gray-700 transition duration-300">
                         <CheckCircle2
-                          className={`mt-0.5 h-5 w-5 flex-shrink-0 transition duration-300 ${
+                          className={`mt-0.5 h-4 w-4 md:h-5 md:w-5 flex-shrink-0 ${
                             idx === 0 ? 'text-brand' : 'text-amber-500'
                           }`}
                         />
@@ -144,10 +144,10 @@ export default function ContractModels() {
 
                   {/* CTA Button */}
                   <button
-                    className={`mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white transition duration-300 hover:scale-110 hover:shadow-lg ${m.ctaColor}`}
+                    className={`mt-6 md:mt-8 inline-flex items-center gap-2 rounded-full px-5 md:px-6 py-2.5 md:py-3 text-xs md:text-sm font-semibold text-white transition duration-300 hover:shadow-lg ${m.ctaColor}`}
                   >
                     {m.cta}
-                    <ArrowRight className="h-4 w-4 transition duration-300 group-hover:translate-x-1" />
+                    <ArrowRight className="h-3.5 w-3.5 md:h-4 md:w-4 transition duration-300" />
                   </button>
                 </div>
               </div>
@@ -156,21 +156,21 @@ export default function ContractModels() {
         </div>
 
         {/* Benefits Section */}
-        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-16 grid gap-4 sm:grid-cols-2 sm:gap-5 md:grid-cols-3 md:gap-6 lg:grid-cols-4">
           {benefits.map((b) => {
             const BIcon = b.icon
             return (
               <div
                 key={b.title}
-                className="rounded-2xl border border-white/30 bg-white/30 backdrop-blur-md p-6 text-center transition duration-300 hover:bg-white/50 hover:shadow-lg hover:scale-105"
+                className="rounded-2xl border border-white/30 bg-white/30 backdrop-blur-md p-5 md:p-6 text-center transition duration-300 hover:bg-white/50 hover:shadow-lg"
               >
                 <div className="flex justify-center">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand/20 text-brand backdrop-blur-sm transition duration-300 hover:bg-brand/40">
-                    <BIcon className="h-6 w-6" />
+                  <div className="flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-xl bg-brand/20 text-brand backdrop-blur-sm transition duration-300 hover:bg-brand/40">
+                    <BIcon className="h-5 w-5 md:h-6 md:w-6" />
                   </div>
                 </div>
-                <h4 className="mt-4 font-bold text-ink transition duration-300">{b.title}</h4>
-                <p className="mt-2 text-xs text-gray-600 transition duration-300">{b.desc}</p>
+                <h4 className="mt-3 md:mt-4 text-sm md:text-base font-bold text-ink transition duration-300">{b.title}</h4>
+                <p className="mt-1.5 md:mt-2 text-xs md:text-sm text-gray-600 transition duration-300">{b.desc}</p>
               </div>
             )
           })}

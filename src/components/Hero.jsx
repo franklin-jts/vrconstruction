@@ -186,13 +186,13 @@ export default function Hero() {
               type="text"
               required
               placeholder="Your name"
-              className="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-2.5 text-sm text-white placeholder-white/60 outline-none backdrop-blur-sm transition focus:border-brand focus:ring-2 focus:ring-brand/40"
+              className="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-2.5 text-base text-white placeholder-white/60 outline-none backdrop-blur-sm transition focus:border-brand focus:ring-2 focus:ring-brand/40"
             />
             <input
               type="tel"
               required
               placeholder="Mobile number"
-              className="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-2.5 text-sm text-white placeholder-white/60 outline-none backdrop-blur-sm transition focus:border-brand focus:ring-2 focus:ring-brand/40"
+              className="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-2.5 text-base text-white placeholder-white/60 outline-none backdrop-blur-sm transition focus:border-brand focus:ring-2 focus:ring-brand/40"
             />
             <button type="submit" className="btn-brand w-full">
               Get Free Quote

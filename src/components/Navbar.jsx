@@ -119,7 +119,8 @@ export default function Navbar() {
       <style>{`
         .navbar-container {
           padding: 8px 16px;
-          height: 50px;
+          height: auto;
+          min-height: auto;
           display: flex;
           align-items: center;
           gap: 30px;
@@ -130,33 +131,71 @@ export default function Navbar() {
         .logo-wrapper {
           display: flex;
           align-items: center;
-          height: 100px;
-          margin: -25px 0;
+          height: auto;
+          margin: 0;
           position: absolute;
           left: 16px;
         }
         
         .navbar-menu {
-          font-size: 13px;
-          gap: 25px;
+          font-size: 12px;
+          gap: 20px;
           display: flex;
           align-items: center;
           justify-content: center;
           flex: 1;
         }
         
+        @media (max-width: 640px) {
+          .navbar-container {
+            padding: 6px 12px;
+            gap: 20px;
+          }
+          
+          .navbar-menu {
+            font-size: 11px;
+            gap: 15px;
+          }
+          
+          .logo-wrapper {
+            left: 12px;
+          }
+        }
+        
+        @media (min-width: 768px) {
+          .navbar-container {
+            padding: 10px 20px;
+          }
+          
+          .navbar-menu {
+            font-size: 13px;
+            gap: 25px;
+          }
+        }
+        
         .navbar-button {
-          font-size: 12px;
-          padding: 6px 14px;
+          font-size: 11px;
+          padding: 4px 10px;
           border-radius: 4px;
-          position: absolute;
-          right: 16px;
+        }
+        
+        @media (min-width: 768px) {
+          .navbar-button {
+            font-size: 12px;
+            padding: 6px 14px;
+          }
         }
         
         .navbar-link {
-          font-size: 13px;
+          font-size: 11px;
           font-weight: 500;
           transition: color 0.3s ease;
+        }
+        
+        @media (min-width: 768px) {
+          .navbar-link {
+            font-size: 13px;
+          }
         }
         
         .navbar-link:hover {

@@ -37,17 +37,17 @@ export default function Advantage() {
           dark
         />
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 sm:gap-5 md:gap-6 lg:grid-cols-4">
           {points.map(({ icon: Icon, title, desc }) => (
             <div
               key={title}
-              className="group rounded-3xl border border-white/10 bg-white/5 p-7 backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-brand/40 hover:bg-white/10"
+              className="group rounded-3xl border border-white/20 bg-white/8 p-5 md:p-7 backdrop-blur-sm transition duration-300 hover:border-white/30 hover:bg-white/12 hover:shadow-lg"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand/15 text-brand transition group-hover:bg-brand group-hover:text-white">
-                <Icon className="h-6 w-6" />
+              <div className="flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-2xl bg-white/20 text-white transition group-hover:bg-white group-hover:text-[#1b5e2e]">
+                <Icon className="h-5 w-5 md:h-6 md:w-6" />
               </div>
-              <h3 className="mt-5 text-lg font-bold">{title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-white/70">{desc}</p>
+              <h3 className="mt-4 md:mt-5 text-base md:text-lg font-bold">{title}</h3>
+              <p className="mt-2 text-xs md:text-sm leading-relaxed text-white/80">{desc}</p>
             </div>
           ))}
         </div>
