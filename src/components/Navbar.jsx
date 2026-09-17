@@ -118,12 +118,12 @@ export default function Navbar() {
     <>
       <style>{`
         .navbar-container {
-          padding: 8px 16px;
+          padding: 4px 12px;
           height: auto;
           min-height: auto;
           display: flex;
           align-items: center;
-          gap: 30px;
+          gap: 20px;
           overflow: visible;
           justify-content: space-between;
         }
@@ -139,7 +139,7 @@ export default function Navbar() {
         
         .navbar-menu {
           font-size: 12px;
-          gap: 20px;
+          gap: 15px;
           display: none;
           align-items: center;
           justify-content: center;
@@ -149,14 +149,14 @@ export default function Navbar() {
         @media (min-width: 768px) {
           .navbar-menu {
             display: flex;
-            font-size: 13px;
-            gap: 25px;
+            font-size: 12px;
+            gap: 20px;
           }
         }
         
         @media (max-width: 767px) {
           .navbar-container {
-            padding: 8px 12px;
+            padding: 4px 10px;
             gap: 0;
             justify-content: space-between;
           }
@@ -171,17 +171,17 @@ export default function Navbar() {
         }
         
         .navbar-button {
-          font-size: 11px;
-          padding: 4px 10px;
-          border-radius: 4px;
+          font-size: 10px;
+          padding: 3px 8px;
+          border-radius: 3px;
           display: none;
         }
         
         @media (min-width: 768px) {
           .navbar-button {
             display: inline-flex;
-            font-size: 12px;
-            padding: 6px 14px;
+            font-size: 11px;
+            padding: 5px 12px;
           }
         }
         
@@ -193,7 +193,7 @@ export default function Navbar() {
         
         @media (min-width: 768px) {
           .navbar-link {
-            font-size: 13px;
+            font-size: 12px;
           }
         }
         
@@ -208,6 +208,7 @@ export default function Navbar() {
           background: none;
           border: none;
           cursor: pointer;
+          padding: 4px;
         }
         
         @media (min-width: 768px) {
@@ -250,7 +251,7 @@ export default function Navbar() {
       <div className="navbar-container mx-auto max-w-7xl px-4">
         <div className="logo-wrapper">
           <Link to="/" className="flex-shrink-0">
-            <BrandLogo className="h-20 w-auto" />
+            <BrandLogo className="h-16 w-auto" />
           </Link>
         </div>
 

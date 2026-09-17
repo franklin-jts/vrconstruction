@@ -57,7 +57,7 @@ export default function Footer() {
       <div className="relative mx-auto max-w-7xl px-4 py-12 md:py-14 lg:py-16">
         <div className="grid gap-8 md:gap-10 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
           <div>
-            <BrandLogo size={100} />
+            <BrandLogo size={90} />
             <p className="mt-4 max-w-sm text-xs md:text-sm leading-relaxed text-white/80">
               VR Constructions Promise: Transparent pricing. Quality execution. A
               dedicated team helps you move from idea to construction with fewer
