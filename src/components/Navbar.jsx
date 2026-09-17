@@ -132,7 +132,7 @@ export default function Navbar() {
           display: flex;
           align-items: center;
           height: auto;
-          margin: 0;
+          margin: -20px 0;
           position: relative;
           left: 0;
         }
