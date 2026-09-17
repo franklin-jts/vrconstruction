@@ -240,7 +240,7 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <nav className="navbar-menu hidden lg:flex">
+        <nav className="navbar-menu hidden md:flex lg:flex">
           <Link
             className="navbar-link text-ink hover:text-brand"
             to="/"
@@ -265,7 +265,7 @@ export default function Navbar() {
           <Dropdown label="Company" items={companyMenu} />
         </nav>
 
-        <div className="hidden items-center gap-2 lg:flex">
+        <div className="hidden md:flex lg:flex items-center gap-2">
           <Link to="/#contact" className="navbar-button btn-brand">
             Get Free Quote
           </Link>
@@ -273,7 +273,7 @@ export default function Navbar() {
 
         <button
           type="button"
-          className="lg:hidden"
+          className="md:hidden"
           aria-label="Open menu"
           onClick={() => setMobileOpen(true)}
         >
