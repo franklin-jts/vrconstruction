@@ -15,73 +15,97 @@ export default function Services() {
           subtitle="At VR Constructions, we offer a comprehensive range of home construction services tailored to meet your unique needs — from initial design to final handover. Click a service to explore it in detail."
         />
 
-        {/* Construction Content Cards */}
+        {/* Construction Content + Images Cards */}
         {constructionService && (
           <div className="mt-14 md:mt-16">
-            <div className="mb-8">
+            <div className="mb-12">
               <h2 className="text-center text-2xl md:text-3xl font-bold text-ink mb-2">
-                Construction <span className="text-brand">Services</span>
+                Construction <span className="text-brand">Solutions</span>
               </h2>
               <p className="text-center text-sm md:text-base text-gray-600 max-w-2xl mx-auto">
-                Explore our comprehensive construction solutions
+                Explore our comprehensive construction solutions with proven project examples
               </p>
             </div>
             
-            <div className="grid gap-6 md:gap-8 lg:grid-cols-3">
-              {constructionService.works.map((work) => {
+            <div className="space-y-8 md:space-y-12">
+              {constructionService.works.map((work, idx) => {
                 const WorkIcon = work.icon
+                const isEven = idx % 2 === 0
+                
                 return (
                   <div
                     key={work.title}
-                    className="group relative overflow-hidden rounded-2xl bg-white border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 hover:border-brand/40 p-6 md:p-8"
+                    className={`grid gap-6 md:gap-8 lg:gap-12 items-center ${
+                      isEven ? 'lg:grid-cols-[1fr_1.2fr]' : 'lg:grid-cols-[1.2fr_1fr]'
+                    }`}
                   >
-                    {/* Background glow */}
-                    <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-brand/5 blur-3xl transition-all duration-500 group-hover:bg-brand/15 group-hover:scale-150" />
-                    
-                    <div className="relative z-10">
-                      {/* Tag and Icon */}
-                      <div className="flex items-center justify-between mb-4">
-                        <span className="inline-flex rounded-full border border-brand/30 bg-brand/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-brand">
-                          {work.tag}
-                        </span>
-                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand/10 text-brand">
-                          <WorkIcon className="h-5 w-5" />
+                    {/* Image Container */}
+                    <div className={`order-2 ${isEven ? 'lg:order-2' : 'lg:order-1'}`}>
+                      <div className="relative overflow-hidden rounded-2xl bg-gray-200 shadow-lg hover:shadow-2xl transition-all duration-300 group">
+                        <div className="aspect-video md:aspect-square overflow-hidden">
+                          <img
+                            src={work.img}
+                            alt={work.title}
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                          />
+                          {/* Overlay Gradient */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         </div>
                       </div>
+                    </div>
 
-                      {/* Title */}
-                      <h3 className="text-xl md:text-2xl font-bold text-ink mb-3 group-hover:text-brand transition-colors duration-300">
-                        {work.title}
-                      </h3>
-
-                      {/* Description */}
-                      <p className="text-sm md:text-base text-gray-600 mb-5 leading-relaxed">
-                        {work.desc}
-                      </p>
-
-                      {/* Features List */}
-                      <div className="space-y-2.5">
-                        <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">
-                          Key Features
-                        </p>
-                        {work.items.map((item) => (
-                          <div key={item} className="flex items-start gap-3">
-                            <span className="mt-1.5 h-2 w-2 rounded-full bg-brand flex-shrink-0" />
-                            <span className="text-sm text-gray-700 group-hover:text-gray-900 transition-colors">
-                              {item}
+                    {/* Content Container */}
+                    <div className={`order-1 ${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
+                      <div className="rounded-2xl bg-white border border-gray-100 shadow-lg p-6 md:p-8 hover:shadow-xl transition-all duration-300 group">
+                        {/* Background glow */}
+                        <div className="absolute -right-20 -top-20 h-48 w-48 rounded-full bg-brand/5 blur-3xl transition-all duration-500 group-hover:bg-brand/10 group-hover:scale-125" />
+                        
+                        <div className="relative z-10">
+                          {/* Tag and Icon */}
+                          <div className="flex items-center justify-between mb-4">
+                            <span className="inline-flex rounded-full border border-brand/30 bg-brand/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-brand">
+                              {work.tag}
                             </span>
+                            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand/10 text-brand group-hover:bg-brand group-hover:text-white transition-all duration-300">
+                              <WorkIcon className="h-6 w-6" />
+                            </div>
                           </div>
-                        ))}
-                      </div>
 
-                      {/* CTA Button */}
-                      <Link
-                        to={`/services/constructions`}
-                        className="mt-6 inline-flex items-center gap-2 rounded-full bg-brand/10 px-4 py-2 text-sm font-semibold text-brand transition-all duration-300 hover:bg-brand hover:text-white group/btn"
-                      >
-                        Learn More
-                        <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-                      </Link>
+                          {/* Title */}
+                          <h3 className="text-2xl md:text-3xl font-bold text-ink mb-3 group-hover:text-brand transition-colors duration-300">
+                            {work.title}
+                          </h3>
+
+                          {/* Description */}
+                          <p className="text-sm md:text-base text-gray-600 mb-6 leading-relaxed">
+                            {work.desc}
+                          </p>
+
+                          {/* Features List */}
+                          <div className="space-y-3">
+                            <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">
+                              What We Offer
+                            </p>
+                            {work.items.map((item) => (
+                              <div key={item} className="flex items-start gap-3">
+                                <span className="mt-1.5 h-2.5 w-2.5 rounded-full bg-brand flex-shrink-0" />
+                                <span className="text-sm text-gray-700 group-hover:text-gray-900 transition-colors">
+                                  {item}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+
+                          {/* CTA Button */}
+                          <Link
+                            to={`/services/constructions`}
+                            className="mt-7 inline-flex items-center gap-2 rounded-full bg-brand px-6 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-brand-dark hover:shadow-lg group/btn"
+                          >
+                            Explore Service
+                            <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                          </Link>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 )
@@ -91,7 +115,7 @@ export default function Services() {
         )}
 
         {/* Service Cards */}
-        <div className="mt-14 md:mt-16">
+        <div className="mt-16 md:mt-20">
           <div className="mb-8">
             <h2 className="text-center text-2xl md:text-3xl font-bold text-ink">
               All <span className="text-brand">Services</span>
