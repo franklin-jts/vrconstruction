@@ -99,15 +99,11 @@ export default function Services() {
                       data-card-index={idx}
                       data-type="image"
                     >
-                      <div className="relative overflow-hidden rounded-2xl">
-                        <div className="aspect-video md:aspect-square h-48 md:h-56 lg:h-64 overflow-hidden">
-                          <img
-                            src={work.img}
-                            alt={work.title}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                      </div>
+                      <img
+                        src={work.img}
+                        alt={work.title}
+                        className="w-full h-auto rounded-2xl object-cover"
+                      />
                     </div>
 
                     {/* Content Container */}
