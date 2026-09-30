@@ -18,7 +18,7 @@ html {
 body {
   font-family: var(--font-sans);
   color: var(--color-ink);
-  background-color: #fff;
+  background-color: transparent;
 }
 
 /* Brand button */
