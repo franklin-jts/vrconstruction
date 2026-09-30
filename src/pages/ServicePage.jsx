@@ -632,9 +632,9 @@ export default function ServicePage() {
                         {work.items.map((item) => (
                           <div
                             key={item}
-                            className="group/item flex items-start gap-2.5 rounded-xl border border-transparent bg-transparent px-4 py-3 transition-all duration-300 hover:-translate-y-1 hover:border-brand/30 hover:bg-brand/5"
+                            className="group/item flex items-start gap-2.5 rounded-xl border border-transparent bg-transparent px-4 py-3 transition-all duration-300 hover:-translate-y-1 hover:border-transparent"
                           >
-                            <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-brand/10">
+                            <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-transparent">
                               <Check className="h-3 w-3 text-brand" />
                             </span>
 
@@ -650,7 +650,7 @@ export default function ServicePage() {
                       <div className="mt-7">
                         <Link
                           to="/#contact"
-                          className="group inline-flex items-center gap-2 rounded-full border border-brand/40 bg-brand/10 px-5 py-2.5 text-sm font-semibold text-brand transition-all duration-300 hover:-translate-y-1 hover:bg-brand hover:text-white hover:shadow-lg hover:shadow-brand/20"
+                          className="group inline-flex items-center gap-2 rounded-full border border-brand/40 bg-transparent px-5 py-2.5 text-sm font-semibold text-brand transition-all duration-300 hover:-translate-y-1 hover:bg-brand hover:text-white hover:shadow-lg hover:shadow-brand/20"
                         >
                           Request Free Quote
                           <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
