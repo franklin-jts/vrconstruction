@@ -13,6 +13,66 @@ export default function Services() {
           subtitle="At VR Constructions, we offer a comprehensive range of home construction services tailored to meet your unique needs — from initial design to final handover. Click a service to explore it in detail."
         />
 
+        {/* Construction Images Gallery */}
+        <div className="mt-16 grid gap-4 sm:gap-5 md:gap-6 lg:grid-cols-3">
+          {/* Constructions */}
+          <div className="group relative overflow-hidden rounded-2xl h-64 md:h-72 lg:row-span-2">
+            <img
+              src="/images/constructions/image1.png"
+              alt="Construction Projects"
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-white">
+              <h3 className="text-xl md:text-2xl font-bold">Construction Projects</h3>
+              <p className="mt-1 text-xs md:text-sm text-white/90">Quality homes & buildings</p>
+            </div>
+          </div>
+
+          {/* Interiors */}
+          <div className="group relative overflow-hidden rounded-2xl h-64 md:h-72">
+            <img
+              src="/images/interior/image1.png"
+              alt="Interior Design"
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-white">
+              <h3 className="text-xl md:text-2xl font-bold">Interior Design</h3>
+              <p className="mt-1 text-xs md:text-sm text-white/90">Beautiful & functional</p>
+            </div>
+          </div>
+
+          {/* Renovations */}
+          <div className="group relative overflow-hidden rounded-2xl h-64 md:h-72">
+            <img
+              src="/images/Rennovations/image1.png"
+              alt="Home Renovations"
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-white">
+              <h3 className="text-xl md:text-2xl font-bold">Renovations</h3>
+              <p className="mt-1 text-xs md:text-sm text-white/90">Upgrade & modernize</p>
+            </div>
+          </div>
+
+          {/* Others */}
+          <div className="group relative overflow-hidden rounded-2xl h-64 md:h-72">
+            <img
+              src="/images/others/image1.png"
+              alt="Other Services"
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-white">
+              <h3 className="text-xl md:text-2xl font-bold">Other Services</h3>
+              <p className="mt-1 text-xs md:text-sm text-white/90">Electrical & more</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Services Cards */}
         <div className="mt-12 grid gap-4 sm:grid-cols-2 sm:gap-5 md:gap-6 lg:grid-cols-4">
           {services.map(({ icon: Icon, slug, name, short }) => (
             <Link
