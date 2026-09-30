@@ -7,7 +7,7 @@ export default function Services() {
   const constructionService = services.find(s => s.slug === 'constructions')
   
   return (
-    <section id="services" className="bg-gray-50 py-16 md:py-20">
+    <section id="services" className="py-16 md:py-20">
       <div className="mx-auto max-w-7xl px-4">
         <SectionHeading
           eyebrow="Our Expertise"
