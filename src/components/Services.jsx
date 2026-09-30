@@ -1,10 +1,63 @@
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import SectionHeading from './SectionHeading.jsx'
 import { services } from '../data/services.js'
 
+/* Scroll animation trigger hook - Opposite transitions */
+function useScrollAnimation() {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const cardIndex = entry.target.getAttribute('data-card-index')
+            const isImage = entry.target.getAttribute('data-type') === 'image'
+            
+            // Opposite animations for image vs content
+            if (cardIndex === '0') {
+              // Card 1
+              if (isImage) {
+                entry.target.classList.add('animate-slide-in-left') // Image slides left
+              } else {
+                entry.target.classList.add('animate-slide-in-right') // Content slides right
+              }
+            } else if (cardIndex === '1') {
+              // Card 2 - opposite of card 1
+              if (isImage) {
+                entry.target.classList.add('animate-slide-in-right') // Image slides right
+              } else {
+                entry.target.classList.add('animate-slide-in-left') // Content slides left
+              }
+            } else if (cardIndex === '2') {
+              // Card 3 - same as card 1
+              if (isImage) {
+                entry.target.classList.add('animate-slide-in-left')
+              } else {
+                entry.target.classList.add('animate-slide-in-right')
+              }
+            }
+          }
+        })
+      },
+      {
+        threshold: 0.15,
+        rootMargin: '0px 0px -100px 0px',
+      }
+    )
+
+    const elements = document.querySelectorAll('[data-scroll-animate]')
+    elements.forEach((el) => observer.observe(el))
+
+    return () => observer.disconnect()
+  }, [])
+}
+
 export default function Services() {
   const constructionService = services.find(s => s.slug === 'constructions')
+  
+  // Trigger scroll animations
+  useScrollAnimation()
   
   return (
     <section id="services" className="py-16 md:py-20">
@@ -39,9 +92,14 @@ export default function Services() {
                       isEven ? 'lg:grid-cols-[1fr_1.2fr]' : 'lg:grid-cols-[1.2fr_1fr]'
                     }`}
                   >
-                    {/* Image Container */}
-                    <div className={`order-2 ${isEven ? 'lg:order-2' : 'lg:order-1'}`}>
-                      <div className="relative overflow-hidden rounded-2xl bg-gray-200 shadow-lg hover:shadow-2xl transition-all duration-300 group">
+                    {/* Image - No Box */}
+                    <div 
+                      className={`order-2 ${isEven ? 'lg:order-2' : 'lg:order-1'} opacity-0`}
+                      data-scroll-animate
+                      data-card-index={idx}
+                      data-type="image"
+                    >
+                      <div className="relative overflow-hidden rounded-2xl group hover:shadow-2xl transition-all duration-300">
                         <div className="aspect-video md:aspect-square h-48 md:h-56 lg:h-64 overflow-hidden">
                           <img
                             src={work.img}
@@ -55,7 +113,12 @@ export default function Services() {
                     </div>
 
                     {/* Content Container */}
-                    <div className={`order-1 ${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
+                    <div 
+                      className={`order-1 ${isEven ? 'lg:order-1' : 'lg:order-2'} opacity-0`}
+                      data-scroll-animate
+                      data-card-index={idx}
+                      data-type="content"
+                    >
                       <div className="rounded-2xl p-6 md:p-8">
                         <div className="relative z-10">
                           {/* Tag and Icon */}
