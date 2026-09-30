@@ -537,7 +537,7 @@ export default function ServicePage() {
                 return (
                   <div
                     key={work.title}
-                    className="service-work-row grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:min-h-[65vh] md:gap-16"
+                    className="service-work-row grid grid-cols-1 items-center gap-10 bg-transparent md:grid-cols-2 md:min-h-[65vh] md:gap-16"
                   >
                     {/* =================================================
                         IMAGE
@@ -592,6 +592,7 @@ export default function ServicePage() {
                     <div
                       data-scroll-reveal
                       className={`
+                        bg-transparent
                         ${contentInitial}
                         ${isLeft ? 'md:order-2' : 'md:order-1'}
                         transition-all
