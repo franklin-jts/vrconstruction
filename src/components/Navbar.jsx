@@ -132,7 +132,7 @@ export default function Navbar() {
           display: flex;
           align-items: center;
           height: auto;
-          margin: -20px 0;
+          margin: -35px 0;
           position: relative;
           left: 0;
         }
@@ -251,7 +251,7 @@ export default function Navbar() {
       <div className="navbar-container mx-auto max-w-7xl px-4">
         <div className="logo-wrapper">
           <Link to="/" className="flex-shrink-0">
-            <BrandLogo className="h-16 w-auto" />
+            <BrandLogo size={140} className="h-16 w-auto" />
           </Link>
         </div>
 
