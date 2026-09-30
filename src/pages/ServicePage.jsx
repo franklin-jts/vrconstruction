@@ -632,7 +632,7 @@ export default function ServicePage() {
                         {work.items.map((item) => (
                           <div
                             key={item}
-                            className="group/item flex items-start gap-2.5 rounded-xl border border-gray-100 bg-gray-50 px-4 py-3 transition-all duration-300 hover:-translate-y-1 hover:border-brand/30 hover:bg-brand/5"
+                            className="group/item flex items-start gap-2.5 rounded-xl border border-transparent bg-transparent px-4 py-3 transition-all duration-300 hover:-translate-y-1 hover:border-brand/30 hover:bg-brand/5"
                           >
                             <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-brand/10">
                               <Check className="h-3 w-3 text-brand" />
