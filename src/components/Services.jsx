@@ -15,64 +15,77 @@ export default function Services() {
           subtitle="At VR Constructions, we offer a comprehensive range of home construction services tailored to meet your unique needs — from initial design to final handover. Click a service to explore it in detail."
         />
 
-        {/* Construction Images Showcase */}
+        {/* Construction Content Cards */}
         {constructionService && (
           <div className="mt-14 md:mt-16">
             <div className="mb-8">
               <h2 className="text-center text-2xl md:text-3xl font-bold text-ink mb-2">
-                Construction <span className="text-brand">Gallery</span>
+                Construction <span className="text-brand">Services</span>
               </h2>
               <p className="text-center text-sm md:text-base text-gray-600 max-w-2xl mx-auto">
-                Explore our recently completed construction projects across Bangalore
+                Explore our comprehensive construction solutions
               </p>
             </div>
             
             <div className="grid gap-6 md:gap-8 lg:grid-cols-3">
-              {constructionService.works.map((work) => (
-                <div
-                  key={work.title}
-                  className="group relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-xl transition-all duration-300"
-                >
-                  {/* Image Container */}
-                  <div className="relative h-64 md:h-72 overflow-hidden bg-gray-200">
-                    <img
-                      src={work.img}
-                      alt={work.title}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                    {/* Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-5 md:p-6">
-                    <div className="flex items-center gap-2 mb-3">
-                      <span className="inline-flex rounded-full border border-brand/30 bg-brand/10 px-2.5 py-1 text-xs font-bold uppercase text-brand">
-                        {work.tag}
-                      </span>
-                      {work.icon && <work.icon className="h-4 w-4 text-brand" />}
-                    </div>
+              {constructionService.works.map((work) => {
+                const WorkIcon = work.icon
+                return (
+                  <div
+                    key={work.title}
+                    className="group relative overflow-hidden rounded-2xl bg-white border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 hover:border-brand/40 p-6 md:p-8"
+                  >
+                    {/* Background glow */}
+                    <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-brand/5 blur-3xl transition-all duration-500 group-hover:bg-brand/15 group-hover:scale-150" />
                     
-                    <h3 className="text-lg md:text-xl font-bold text-ink mb-2 group-hover:text-brand transition-colors">
-                      {work.title}
-                    </h3>
-                    
-                    <p className="text-xs md:text-sm text-gray-600 mb-4 line-clamp-2">
-                      {work.desc}
-                    </p>
-
-                    {/* Key Features */}
-                    <div className="space-y-2">
-                      {work.items.slice(0, 2).map((item) => (
-                        <div key={item} className="flex items-start gap-2 text-xs md:text-sm text-gray-700">
-                          <span className="text-brand font-bold">•</span>
-                          <span>{item}</span>
+                    <div className="relative z-10">
+                      {/* Tag and Icon */}
+                      <div className="flex items-center justify-between mb-4">
+                        <span className="inline-flex rounded-full border border-brand/30 bg-brand/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-brand">
+                          {work.tag}
+                        </span>
+                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand/10 text-brand">
+                          <WorkIcon className="h-5 w-5" />
                         </div>
-                      ))}
+                      </div>
+
+                      {/* Title */}
+                      <h3 className="text-xl md:text-2xl font-bold text-ink mb-3 group-hover:text-brand transition-colors duration-300">
+                        {work.title}
+                      </h3>
+
+                      {/* Description */}
+                      <p className="text-sm md:text-base text-gray-600 mb-5 leading-relaxed">
+                        {work.desc}
+                      </p>
+
+                      {/* Features List */}
+                      <div className="space-y-2.5">
+                        <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">
+                          Key Features
+                        </p>
+                        {work.items.map((item) => (
+                          <div key={item} className="flex items-start gap-3">
+                            <span className="mt-1.5 h-2 w-2 rounded-full bg-brand flex-shrink-0" />
+                            <span className="text-sm text-gray-700 group-hover:text-gray-900 transition-colors">
+                              {item}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* CTA Button */}
+                      <Link
+                        to={`/services/constructions`}
+                        className="mt-6 inline-flex items-center gap-2 rounded-full bg-brand/10 px-4 py-2 text-sm font-semibold text-brand transition-all duration-300 hover:bg-brand hover:text-white group/btn"
+                      >
+                        Learn More
+                        <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                      </Link>
                     </div>
                   </div>
-                </div>
-              ))}
+                )
+              })}
             </div>
           </div>
         )}
@@ -81,7 +94,7 @@ export default function Services() {
         <div className="mt-14 md:mt-16">
           <div className="mb-8">
             <h2 className="text-center text-2xl md:text-3xl font-bold text-ink">
-              Our <span className="text-brand">Services</span>
+              All <span className="text-brand">Services</span>
             </h2>
           </div>
 
