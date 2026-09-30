@@ -1,13 +1,15 @@
-import { CheckCircle2, ArrowRight, Home, FileCheck } from 'lucide-react'
-import SectionHeading from './SectionHeading.jsx'
+import { useEffect, useRef, useState } from 'react'
+import { ArrowRight, Home, FileCheck, ShieldCheck, Layers, Handshake } from 'lucide-react'
+
+const NAVY = '#0b1f3a'
 
 const models = [
   {
+    id: 'transparent',
     icon: Home,
     name: 'Transparent Cost Model',
-    badge: null,
-    desc: 'Complete visibility. Maximum flexibility. Real value.',
-    longDesc: 'Our Transparent Cost Model allows you to pay the actual cost of materials and labour, along with a pre-defined management fee. This is ideal for homeowners who want full control and transparency throughout the construction journey.',
+    tagline: 'Complete visibility. Maximum flexibility. Real value.',
+    desc: 'Pay the actual cost of materials and labour, along with a pre-defined management fee. Ideal for homeowners who want full control and transparency throughout the construction journey.',
     points: [
       '100% cost transparency with detailed reports',
       'Pay only for actual materials and work completed',
@@ -16,15 +18,14 @@ const models = [
       'Regular cost updates and milestone-wise billing',
     ],
     cta: 'Explore Transparent Cost Model',
-    ctaColor: 'bg-brand hover:bg-brand-dark',
-    alignment: 'left',
+    color: '#0f766e',
   },
   {
+    id: 'fixed',
     icon: FileCheck,
     name: 'Fixed Price Model',
-    badge: null,
-    desc: 'Plan better. Build smarter. No surprises.',
-    longDesc: 'Our Fixed Price Model offers a single, all-inclusive price for the entire project based on approved designs, specifications and detailed bill of quantities. It\'s the perfect choice for homeowners who prefer a clear budget and predictable timeline.',
+    tagline: 'Plan better. Build smarter. No surprises.',
+    desc: "One single, all-inclusive price for the entire project, based on approved designs, specifications and a detailed bill of quantities. The right choice for homeowners who prefer a clear budget and predictable timeline.",
     points: [
       'Fixed and predictable project cost',
       'Defined scope and specifications upfront',
@@ -33,145 +34,212 @@ const models = [
       'Ideal for standard home designs and well-defined projects',
     ],
     cta: 'Explore Fixed Price Model',
-    ctaColor: 'bg-amber-500 hover:bg-amber-600',
-    alignment: 'right',
+    color: '#b8862b',
   },
+]
+
+const stats = [
+  { to: 100, suffix: '%', label: 'Cost transparency with the Transparent Cost Model' },
+  { to: 10, prefix: 'Up to ', suffix: '%', label: 'Savings compared to fixed price models' },
+  { to: 2, suffix: '', label: 'Contract options, one standard of quality' },
 ]
 
 const benefits = [
-  {
-    icon: Home,
-    title: 'Client-Centric Approach',
-    desc: 'Your goals, our priority',
-  },
-  {
-    icon: CheckCircle2,
-    title: 'Quality & Compliance',
-    desc: 'Built to last, built right',
-  },
-  {
-    icon: FileCheck,
-    title: 'Flexible & Scalable',
-    desc: 'Solutions for every need',
-  },
-  {
-    icon: Home,
-    title: 'Trusted Partnership',
-    desc: 'From foundation to forever',
-  },
+  { icon: Handshake, title: 'Client-centric approach', desc: 'Your goals come first' },
+  { icon: ShieldCheck, title: 'Quality and compliance', desc: 'Built to last, built right' },
+  { icon: Layers, title: 'Flexible and scalable', desc: 'Solutions for every need' },
+  { icon: Home, title: 'Trusted partnership', desc: 'From foundation to handover' },
 ]
 
-export default function ContractModels() {
+const reduced = () => typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+
+function useInView(threshold = 0.2) {
+  const ref = useRef(null)
+  const [seen, setSeen] = useState(false)
+  useEffect(() => {
+    if (reduced() || !('IntersectionObserver' in window)) return setSeen(true)
+    const io = new IntersectionObserver(
+      ([e]) => e.isIntersecting && (setSeen(true), io.disconnect()),
+      { threshold }
+    )
+    ref.current && io.observe(ref.current)
+    return () => io.disconnect()
+  }, [threshold])
+  return [ref, seen]
+}
+
+function Reveal({ children, delay = 0, className = '' }) {
+  const [ref, seen] = useInView()
   return (
-    <section id="cost-plus" className="relative overflow-hidden bg-white py-16 md:py-20">
-      <div className="mx-auto max-w-7xl px-4">
-        <div className="text-center">
-          <span className="inline-flex rounded-full border border-brand/30 bg-brand/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-brand">
-            OUR CONTRACT APPROACH
-          </span>
-          <h2 className="mt-4 text-3xl font-bold text-ink md:text-4xl">
-            Choose a Construction Contract
-            <br />
-            <span className="text-brand">That Works for You</span>
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-gray-600 md:text-lg">
-            Every project is unique. That's why we offer two flexible home construction contract options, designed to give you clarity, control and confidence — whether you want complete cost transparency or a fixed, all-inclusive price.
-          </p>
-          <div className="mt-2 flex items-center justify-center gap-2 border-t border-gray-200 pt-4 text-xs font-bold uppercase tracking-widest text-gray-500">
-            <span>SAME COMMITMENT, A BETTER BUILDING EXPERIENCE</span>
+    <div
+      ref={ref}
+      style={{ transitionDelay: `${delay}ms` }}
+      className={`transition-all duration-700 ease-out motion-reduce:transition-none ${
+        seen ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
+      } ${className}`}
+    >
+      {children}
+    </div>
+  )
+}
+
+function CountUp({ to, prefix = '', suffix = '' }) {
+  const [ref, seen] = useInView(0.5)
+  const [v, setV] = useState(0)
+  useEffect(() => {
+    if (!seen) return
+    if (reduced()) return setV(to)
+    let raf
+    const start = performance.now()
+    const tick = (now) => {
+      const p = Math.min((now - start) / 1400, 1)
+      setV(Math.round(to * (1 - Math.pow(1 - p, 3))))
+      if (p < 1) raf = requestAnimationFrame(tick)
+    }
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [seen, to])
+  return (
+    <span ref={ref}>
+      {prefix}
+      {v}
+      {suffix}
+    </span>
+  )
+}
+
+function Tick({ color, show, delay }) {
+  return (
+    <svg viewBox="0 0 24 24" className="mt-0.5 h-5 w-5 shrink-0" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle
+        cx="12" cy="12" r="10" pathLength="1"
+        style={{ strokeDasharray: 1, strokeDashoffset: show ? 0 : 1, transition: `stroke-dashoffset .7s ease ${delay}ms` }}
+      />
+      <path
+        d="M7.5 12.5l3 3 6-6.5" pathLength="1"
+        style={{ strokeDasharray: 1, strokeDashoffset: show ? 0 : 1, transition: `stroke-dashoffset .5s ease ${delay + 350}ms` }}
+      />
+    </svg>
+  )
+}
+
+function ModelCard({ m, index }) {
+  const [ref, seen] = useInView(0.25)
+  const Icon = m.icon
+  return (
+    <div
+      ref={ref}
+      style={{ transitionDelay: `${index * 150}ms` }}
+      className={`group relative overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all duration-700 ease-out hover:-translate-y-1 hover:shadow-xl motion-reduce:transition-none ${
+        seen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+      }`}
+    >
+      {/* accent bar draws in */}
+      <div
+        className="h-1.5 origin-left transition-transform duration-1000 ease-out motion-reduce:transition-none"
+        style={{ background: m.color, transform: seen ? 'scaleX(1)' : 'scaleX(0)', transitionDelay: `${index * 150 + 300}ms` }}
+      />
+      <div className="p-6 md:p-10">
+        <div className="flex items-start gap-4">
+          <div
+            className="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg text-white transition-transform duration-500 group-hover:rotate-6"
+            style={{ background: m.color }}
+          >
+            <Icon className="h-7 w-7" />
+          </div>
+          <div>
+            <h3 className="font-serif text-xl font-semibold md:text-2xl" style={{ color: NAVY }}>{m.name}</h3>
+            <p className="mt-1 text-sm font-medium" style={{ color: m.color }}>{m.tagline}</p>
           </div>
         </div>
 
-        <div className="mt-16 grid gap-6 md:gap-8 lg:grid-cols-2">
-          {models.map((m, idx) => {
-            const ModelIcon = m.icon
-            return (
-              <div
-                key={m.name}
-                className={`relative overflow-hidden rounded-3xl border backdrop-blur-xl transition duration-500 hover:shadow-2xl ${
-                  idx === 0
-                    ? 'border-brand/30 bg-white/40 shadow-lg hover:border-brand/50'
-                    : 'border-amber-300/30 bg-white/40 shadow-lg hover:border-amber-300/50'
-                }`}
-              >
-                {/* Background accent */}
-                <div className="absolute inset-0 opacity-40">
-                  <div
-                    className={`absolute ${
-                      idx === 0
-                        ? 'right-0 top-0 h-80 w-80 bg-gradient-to-br from-brand/20 to-transparent rounded-full blur-3xl'
-                        : 'left-0 top-0 h-80 w-80 bg-gradient-to-br from-amber-200/20 to-transparent rounded-full blur-3xl'
-                    }`}
-                  />
-                </div>
+        <p className="mt-6 text-sm leading-relaxed text-slate-600 md:text-base">{m.desc}</p>
 
-                <div className="relative p-5 md:p-8 lg:p-10">
-                  {/* Icon and Title */}
-                  <div className="flex items-start gap-4">
-                    <div
-                      className={`flex h-12 w-12 md:h-14 md:w-14 items-center justify-center rounded-2xl backdrop-blur-md transition duration-300 flex-shrink-0 ${
-                        idx === 0
-                          ? 'bg-brand/20 text-brand hover:bg-brand/40'
-                          : 'bg-amber-100/40 text-amber-600 hover:bg-amber-100/60'
-                      }`}
-                    >
-                      <ModelIcon className="h-6 w-6 md:h-7 md:w-7" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="text-lg md:text-2xl font-bold text-ink transition duration-300">{m.name}</h3>
-                      <p className="mt-1 text-xs md:text-sm font-semibold text-gray-600">{m.desc}</p>
-                    </div>
-                  </div>
+        <ul className="mt-6 divide-y divide-slate-100">
+          {m.points.map((pt, i) => (
+            <li
+              key={pt}
+              style={{ transitionDelay: `${index * 150 + 500 + i * 120}ms` }}
+              className={`flex items-start gap-3 py-3 text-sm text-slate-700 transition-all duration-700 motion-reduce:transition-none md:text-base ${
+                seen ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'
+              }`}
+            >
+              <Tick color={m.color} show={seen} delay={index * 150 + 500 + i * 120} />
+              <span>{pt}</span>
+            </li>
+          ))}
+        </ul>
 
-                  {/* Description */}
-                  <p className="mt-5 md:mt-6 text-xs md:text-sm leading-relaxed text-gray-700 transition duration-300">
-                    {m.longDesc}
-                  </p>
+        <button
+          className="relative mt-8 inline-flex items-center gap-2 overflow-hidden rounded-md border-2 px-6 py-3 text-sm font-semibold transition-colors duration-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 hover:text-white"
+          style={{ borderColor: m.color, color: m.color, outlineColor: m.color }}
+          onMouseEnter={(e) => (e.currentTarget.firstChild.style.transform = 'translateX(0)')}
+          onMouseLeave={(e) => (e.currentTarget.firstChild.style.transform = 'translateX(-101%)')}
+        >
+          <span
+            aria-hidden
+            className="absolute inset-0 transition-transform duration-500 ease-out motion-reduce:transition-none"
+            style={{ background: m.color, transform: 'translateX(-101%)' }}
+          />
+          <span className="relative">{m.cta}</span>
+          <ArrowRight className="relative h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+        </button>
+      </div>
+    </div>
+  )
+}
 
-                  {/* Points */}
-                  <ul className="mt-5 md:mt-6 space-y-2 md:space-y-3">
-                    {m.points.map((pt) => (
-                      <li key={pt} className="flex items-start gap-3 text-xs md:text-sm text-gray-700 transition duration-300">
-                        <CheckCircle2
-                          className={`mt-0.5 h-4 w-4 md:h-5 md:w-5 flex-shrink-0 ${
-                            idx === 0 ? 'text-brand' : 'text-amber-500'
-                          }`}
-                        />
-                        <span>{pt}</span>
-                      </li>
-                    ))}
-                  </ul>
+export default function ContractModels() {
+  const [lineRef, lineSeen] = useInView(0.5)
 
-                  {/* CTA Button */}
-                  <button
-                    className={`mt-6 md:mt-8 inline-flex items-center gap-2 rounded-full px-5 md:px-6 py-2.5 md:py-3 text-xs md:text-sm font-semibold text-white transition duration-300 hover:shadow-lg ${m.ctaColor}`}
-                  >
-                    {m.cta}
-                    <ArrowRight className="h-3.5 w-3.5 md:h-4 md:w-4 transition duration-300" />
-                  </button>
-                </div>
-              </div>
-            )
-          })}
+  return (
+    <section id="cost-plus" className="bg-slate-50 py-16 md:py-24">
+      <div className="mx-auto max-w-7xl px-4">
+        <Reveal className="mx-auto max-w-3xl text-center">
+          <p className="text-sm font-semibold tracking-wide text-slate-500">Our contract approach</p>
+          <h2 className="mt-3 font-serif text-3xl font-semibold leading-tight md:text-5xl" style={{ color: NAVY }}>
+            Choose a construction contract that works for you
+          </h2>
+          <div ref={lineRef} className="mx-auto mt-6 h-0.5 w-24 origin-center bg-amber-600 transition-transform duration-1000 ease-out motion-reduce:transition-none" style={{ transform: lineSeen ? 'scaleX(1)' : 'scaleX(0)' }} />
+          <p className="mt-6 text-base leading-relaxed text-slate-600 md:text-lg">
+            Every project is unique. That is why we offer two home construction contracts, designed to give you clarity, control and confidence, whether you want complete cost transparency or a fixed, all-inclusive price.
+          </p>
+        </Reveal>
+
+        <div className="mt-14 grid gap-8 lg:grid-cols-2">
+          {models.map((m, i) => (
+            <ModelCard key={m.id} m={m} index={i} />
+          ))}
         </div>
 
-        {/* Benefits Section */}
-        <div className="mt-16 grid gap-4 sm:grid-cols-2 sm:gap-5 md:grid-cols-3 md:gap-6 lg:grid-cols-4">
-          {benefits.map((b) => {
+        {/* Stats */}
+        <div className="mt-16 overflow-hidden rounded-xl text-white" style={{ background: '#154D2B' }}>
+          <div className="grid divide-y divide-white/10 md:grid-cols-3 md:divide-x md:divide-y-0">
+            {stats.map((s, i) => (
+              <Reveal key={s.label} delay={i * 150} className="p-8 text-center">
+                <div className="font-serif text-4xl font-semibold text-amber-400 md:text-5xl">
+                  <CountUp to={s.to} prefix={s.prefix} suffix={s.suffix} />
+                </div>
+                <p className="mx-auto mt-2 max-w-[16rem] text-sm text-slate-300">{s.label}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+
+        {/* Benefits */}
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {benefits.map((b, i) => {
             const BIcon = b.icon
             return (
-              <div
-                key={b.title}
-                className="rounded-2xl border border-white/30 bg-white/30 backdrop-blur-md p-5 md:p-6 text-center transition duration-300 hover:bg-white/50 hover:shadow-lg"
-              >
-                <div className="flex justify-center">
-                  <div className="flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-xl bg-brand/20 text-brand backdrop-blur-sm transition duration-300 hover:bg-brand/40">
-                    <BIcon className="h-5 w-5 md:h-6 md:w-6" />
+              <Reveal key={b.title} delay={i * 100}>
+                <div className="group h-full rounded-lg border border-slate-200 bg-white p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:border-amber-600/50 hover:shadow-lg">
+                  <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 transition-colors duration-300 group-hover:bg-amber-600" style={{ color: NAVY }}>
+                    <BIcon className="h-6 w-6 transition-colors duration-300 group-hover:text-white" />
                   </div>
+                  <h4 className="mt-4 font-serif text-base font-semibold" style={{ color: NAVY }}>{b.title}</h4>
+                  <p className="mt-1 text-sm text-slate-600">{b.desc}</p>
                 </div>
-                <h4 className="mt-3 md:mt-4 text-sm md:text-base font-bold text-ink transition duration-300">{b.title}</h4>
-                <p className="mt-1.5 md:mt-2 text-xs md:text-sm text-gray-600 transition duration-300">{b.desc}</p>
-              </div>
+              </Reveal>
             )
           })}
         </div>
