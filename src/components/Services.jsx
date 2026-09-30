@@ -42,7 +42,7 @@ export default function Services() {
                     {/* Image Container */}
                     <div className={`order-2 ${isEven ? 'lg:order-2' : 'lg:order-1'}`}>
                       <div className="relative overflow-hidden rounded-2xl bg-gray-200 shadow-lg hover:shadow-2xl transition-all duration-300 group">
-                        <div className="aspect-video md:aspect-square overflow-hidden">
+                        <div className="aspect-video md:aspect-square h-48 md:h-56 lg:h-64 overflow-hidden">
                           <img
                             src={work.img}
                             alt={work.title}
