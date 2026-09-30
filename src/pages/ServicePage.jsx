@@ -473,7 +473,7 @@ export default function ServicePage() {
             WORKS SECTION
         ================================================= */}
 
-        <section className="relative overflow-hidden bg-white py-14 text-ink md:py-20">
+        <section className="relative overflow-hidden bg-transparent py-14 text-ink md:py-20">
           {/* Ambient glows */}
 
           <div className="pointer-events-none absolute left-[-10%] top-[10%] h-72 w-72 rounded-full bg-brand/5 blur-[120px]" />
