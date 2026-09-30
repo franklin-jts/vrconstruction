@@ -56,10 +56,7 @@ export default function Services() {
 
                     {/* Content Container */}
                     <div className={`order-1 ${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
-                      <div className="rounded-2xl bg-white border border-gray-100 shadow-lg p-6 md:p-8 hover:shadow-xl transition-all duration-300 group">
-                        {/* Background glow */}
-                        <div className="absolute -right-20 -top-20 h-48 w-48 rounded-full bg-brand/5 blur-3xl transition-all duration-500 group-hover:bg-brand/10 group-hover:scale-125" />
-                        
+                      <div className="rounded-2xl p-6 md:p-8">
                         <div className="relative z-10">
                           {/* Tag and Icon */}
                           <div className="flex items-center justify-between mb-4">
