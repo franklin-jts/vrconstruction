@@ -194,7 +194,7 @@ export default function Hero() {
               placeholder="Mobile number"
               className="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-2.5 text-base text-white placeholder-white/60 outline-none backdrop-blur-sm transition focus:border-brand focus:ring-2 focus:ring-brand/40"
             />
-            <button type="submit" className="btn-brand w-full">
+            <button type="submit" className="btn-brand w-full hover:bg-brand-dark transition duration-300">
               Get Free Quote
               <BadgeCheck className="ml-2 h-4 w-4" />
             </button>

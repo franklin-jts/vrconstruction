@@ -80,7 +80,7 @@ export default function FinalCta() {
               <option className="text-ink">Duplex</option>
               <option className="text-ink">Renovation</option>
             </select>
-            <button type="submit" className="btn-brand w-full text-xs md:text-sm py-2 md:py-2.5 hover:shadow-lg transition duration-300">
+            <button type="submit" className="btn-brand w-full text-xs md:text-sm py-2 md:py-2.5 hover:shadow-lg hover:bg-brand-dark transition duration-300">
               Get Free Estimate
             </button>
           </form>
