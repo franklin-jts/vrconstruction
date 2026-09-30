@@ -54,7 +54,7 @@ export default function Footer() {
     <footer className="relative overflow-hidden bg-[#1b5e2e] text-white">
       <div className="absolute -right-24 top-0 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
 
-      <div className="relative mx-auto max-w-7xl px-4 py-12 md:py-14 lg:py-16">
+      <div className="relative mx-auto max-w-7xl px-4 py-8 md:py-10 lg:py-12">
         <div className="grid gap-8 md:gap-10 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
           <div>
             <BrandLogo size={120} />

@@ -46,7 +46,7 @@ function Dropdown({ label, items }) {
         aria-haspopup="true"
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
-        className="flex items-center gap-1 text-sm font-medium text-ink transition hover:text-brand"
+        className="flex items-center gap-1 text-sm font-bold text-ink transition hover:text-brand"
       >
         {label}
         <ChevronDown
@@ -98,6 +98,16 @@ function Dropdown({ label, items }) {
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Add background when scrolled down more than 50px
+      setScrolled(window.scrollY > 50)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : ''
@@ -187,13 +197,14 @@ export default function Navbar() {
         
         .navbar-link {
           font-size: 11px;
-          font-weight: 500;
+          font-weight: 700;
           transition: color 0.3s ease;
         }
         
         @media (min-width: 768px) {
           .navbar-link {
             font-size: 12px;
+            font-weight: 700;
           }
         }
         
@@ -218,7 +229,11 @@ export default function Navbar() {
         }
       `}</style>
       
-      <header className="sticky top-0 z-50 bg-white shadow-sm">
+      <header className={`sticky top-0 z-50 transition-all duration-300 ${
+        scrolled 
+          ? 'bg-white/80 backdrop-blur-md shadow-md border-b border-white/30' 
+          : 'bg-transparent backdrop-blur-md border-b border-white/20'
+      }`}>
       {/* Top ticker bar */}
       <div className="bg-[#1b5e2e] text-sm text-white">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2">
@@ -247,7 +262,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Logo and Menu - same line */}
+      {/* Logo and Menu - same line with glassmorphism */}
       <div className="navbar-container mx-auto max-w-7xl px-4">
         <div className="logo-wrapper">
           <Link to="/" className="flex-shrink-0">
@@ -257,7 +272,7 @@ export default function Navbar() {
 
         <nav className="navbar-menu hidden md:flex">
           <Link
-            className="navbar-link text-ink hover:text-brand"
+            className={`navbar-link text-ink hover:text-brand transition-colors ${scrolled ? 'text-ink' : 'text-ink'}`}
             to="/"
           >
             Home
@@ -272,7 +287,7 @@ export default function Navbar() {
             }))}
           />
           <Link
-            className="navbar-link text-ink hover:text-brand"
+            className={`navbar-link text-ink hover:text-brand transition-colors ${scrolled ? 'text-ink' : 'text-ink'}`}
             to="/#packages"
           >
             Packages
