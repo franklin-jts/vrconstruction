@@ -487,7 +487,7 @@ export default function ServicePage() {
 
             <div
               data-scroll-reveal
-              className={`mx-auto max-w-2xl rounded-3xl border border-gray-100 bg-white px-6 py-8 text-center shadow-[0_18px_55px_rgba(15,23,42,0.07)] ${initialClass} transition-all duration-1000 ease-out`}
+              className={`mx-auto max-w-2xl rounded-3xl border border-transparent bg-transparent px-6 py-8 text-center shadow-none ${initialClass} transition-all duration-1000 ease-out`}
             >
               <span className="inline-flex items-center rounded-full border border-brand/30 bg-brand/10 px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.3em] text-brand">
                 What We Do
