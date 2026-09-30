@@ -264,7 +264,7 @@ export default function Navbar() {
 
       {/* Logo and Menu - same line with glassmorphism */}
       <div className="navbar-container mx-auto max-w-7xl px-4">
-        <div className="logo-wrapper">
+        <div className="logo-wrapper rounded-lg p-1.5 hover:bg-brand/5 transition-all duration-300">
           <Link to="/" className="flex-shrink-0">
             <BrandLogo size={140} className="h-16 w-auto" />
           </Link>
