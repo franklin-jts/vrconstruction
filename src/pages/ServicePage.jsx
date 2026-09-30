@@ -668,7 +668,7 @@ export default function ServicePage() {
             TRUST BAND
         ================================================= */}
 
-        <section className="border-y border-brand/10 bg-brand-light/40 py-8">
+        <section className="border-y border-brand/10 bg-transparent py-8">
           <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-center gap-x-10 gap-y-4 px-4 text-center">
             {[
               'ISO 9001:2015 Certified Processes',
@@ -697,7 +697,7 @@ export default function ServicePage() {
             PROCESS SECTION
         ================================================= */}
 
-        <section className="bg-gray-50 py-16 md:py-20">
+        <section className="bg-transparent py-16 md:py-20">
           <div className="mx-auto max-w-7xl px-4">
             {/* Header */}
 
@@ -726,14 +726,14 @@ export default function ServicePage() {
                 <div
                   key={p.step}
                   data-scroll-reveal
-                  className="process-card relative rounded-3xl border border-gray-100 bg-white p-6 text-center opacity-0 translate-y-10 scale-95 blur-[2px] transition-all duration-800 ease-out"
+                  className="process-card relative rounded-3xl border border-transparent bg-transparent p-6 text-center opacity-0 translate-y-10 scale-95 blur-[2px] transition-all duration-800 ease-out"
                   style={{
                     transitionDelay: `${i * 140}ms`,
                   }}
                 >
                   {/* Step */}
 
-                  <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-xl font-extrabold text-brand shadow-lg shadow-brand/10 ring-1 ring-brand/15">
+                  <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-transparent text-xl font-extrabold text-brand shadow-none ring-0">
                     {p.step}
                   </span>
 
@@ -798,14 +798,14 @@ export default function ServicePage() {
                     key={o.slug}
                     to={`/services/${o.slug}`}
                     data-scroll-reveal
-                    className="other-service-card group flex items-start gap-4 rounded-3xl border border-gray-100 bg-white p-6 opacity-0 translate-y-10 scale-95 blur-[2px] transition-all duration-800 ease-out"
+                    className="other-service-card group flex items-start gap-4 rounded-3xl border border-transparent bg-transparent p-6 opacity-0 translate-y-10 scale-95 blur-[2px] transition-all duration-800 ease-out"
                     style={{
                       transitionDelay: `${i * 140}ms`,
                     }}
                   >
                     {/* Icon */}
 
-                    <span className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-brand-light text-brand transition-all duration-300 group-hover:rotate-3 group-hover:bg-brand group-hover:text-white">
+                    <span className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-transparent text-brand transition-all duration-300 group-hover:rotate-3 group-hover:bg-brand group-hover:text-white">
                       <OtherIcon className="h-6 w-6" />
                     </span>
 
