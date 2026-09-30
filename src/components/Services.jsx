@@ -92,22 +92,20 @@ export default function Services() {
                       isEven ? 'lg:grid-cols-[1fr_1.2fr]' : 'lg:grid-cols-[1.2fr_1fr]'
                     }`}
                   >
-                    {/* Image - No Box */}
+                    {/* Image - Clean Display */}
                     <div 
                       className={`order-2 ${isEven ? 'lg:order-2' : 'lg:order-1'} opacity-0`}
                       data-scroll-animate
                       data-card-index={idx}
                       data-type="image"
                     >
-                      <div className="relative overflow-hidden rounded-2xl group hover:shadow-2xl transition-all duration-300">
+                      <div className="relative overflow-hidden rounded-2xl">
                         <div className="aspect-video md:aspect-square h-48 md:h-56 lg:h-64 overflow-hidden">
                           <img
                             src={work.img}
                             alt={work.title}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            className="w-full h-full object-cover"
                           />
-                          {/* Overlay Gradient */}
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         </div>
                       </div>
                     </div>
@@ -119,20 +117,20 @@ export default function Services() {
                       data-card-index={idx}
                       data-type="content"
                     >
-                      <div className="rounded-2xl p-6 md:p-8">
+                      <div className="p-6 md:p-8">
                         <div className="relative z-10">
                           {/* Tag and Icon */}
                           <div className="flex items-center justify-between mb-4">
                             <span className="inline-flex rounded-full border border-brand/30 bg-brand/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-brand">
                               {work.tag}
                             </span>
-                            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand/10 text-brand group-hover:bg-brand group-hover:text-white transition-all duration-300">
+                            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand/10 text-brand">
                               <WorkIcon className="h-6 w-6" />
                             </div>
                           </div>
 
                           {/* Title */}
-                          <h3 className="text-2xl md:text-3xl font-bold text-ink mb-3 group-hover:text-brand transition-colors duration-300">
+                          <h3 className="text-2xl md:text-3xl font-bold text-ink mb-3">
                             {work.title}
                           </h3>
 
@@ -149,7 +147,7 @@ export default function Services() {
                             {work.items.map((item) => (
                               <div key={item} className="flex items-start gap-3">
                                 <span className="mt-1.5 h-2.5 w-2.5 rounded-full bg-brand flex-shrink-0" />
-                                <span className="text-sm text-gray-700 group-hover:text-gray-900 transition-colors">
+                                <span className="text-sm text-gray-700">
                                   {item}
                                 </span>
                               </div>
@@ -159,10 +157,10 @@ export default function Services() {
                           {/* CTA Button */}
                           <Link
                             to={`/services/constructions`}
-                            className="mt-7 inline-flex items-center gap-2 rounded-full bg-brand px-6 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-brand-dark hover:shadow-lg group/btn"
+                            className="mt-7 inline-flex items-center gap-2 rounded-full bg-brand px-6 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-brand-dark hover:shadow-lg"
                           >
                             Explore Service
-                            <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                            <ArrowRight className="h-4 w-4" />
                           </Link>
                         </div>
                       </div>
