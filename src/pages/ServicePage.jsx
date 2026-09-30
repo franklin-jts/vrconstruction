@@ -227,14 +227,11 @@ export default function ServicePage() {
         }
 
         .service-image-wrapper img {
-          transition:
-            transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-            filter 0.8s ease;
+          transition: none;
         }
 
         .service-image-wrapper:hover img {
-          transform: scale(1.06);
-          filter: brightness(1.04);
+          /* hover animations removed */
         }
 
         /* -----------------------------------------------
@@ -577,7 +574,7 @@ export default function ServicePage() {
 
                           {/* Image overlay */}
 
-                          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0" />
 
                           {/* Number */}
 
