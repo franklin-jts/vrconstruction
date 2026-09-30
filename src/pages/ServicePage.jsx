@@ -562,7 +562,7 @@ export default function ServicePage() {
                           transitionDelay: `${i * 120}ms`,
                         }}
                       >
-                        <div className="service-image-wrapper relative mx-auto max-h-[420px] w-full overflow-hidden rounded-3xl bg-gray-100 shadow-[0_20px_60px_rgba(15,23,42,0.10)] md:max-h-[520px]">
+                        <div className="service-image-wrapper relative mx-auto max-h-[420px] w-full overflow-hidden rounded-3xl shadow-[0_20px_60px_rgba(15,23,42,0.10)] md:max-h-[520px]">
                           {/* Image */}
 
                           <img
