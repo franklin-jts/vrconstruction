@@ -1,11 +1,11 @@
-export default function BrandLogo({ className = '', size = 100 }) {
+export default function BrandLogo({ className = '', size = 130 }) {
   // Responsive sizing based on screen
   let responsiveSize = size
   if (typeof window !== 'undefined') {
     if (window.innerWidth < 640) {
-      responsiveSize = Math.round(size * 0.75) // 75% on mobile
+      responsiveSize = Math.round(size * 0.7) // 70% on mobile
     } else if (window.innerWidth < 1024) {
-      responsiveSize = Math.round(size * 0.85) // 85% on tablet
+      responsiveSize = Math.round(size * 0.8) // 80% on tablet
     }
   }
   
